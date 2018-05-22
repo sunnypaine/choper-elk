@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.2037
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Choper.Elk", "Choper.Elk\Choper.Elk.csproj", "{F3B8B5CB-CD7F-415A-B15F-B9E40302B5BB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Choper.Elk.Buckhorn", "Choper.Elk.Buckhorn\Choper.Elk.Buckhorn.csproj", "{D94DC1EA-B155-40A7-B296-716DF56702E8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Choper.Elk.Test.Contract", "Choper.Elk.Test.Contract\Choper.Elk.Test.Contract.csproj", "{C51EF2F6-8F3F-46BA-BCC0-4907C1FB86FA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Choper.Elk.Test.BLL", "Choper.Elk.Test.BLL\Choper.Elk.Test.BLL.csproj", "{31765424-9797-4FEC-8C51-E87DC46F48A1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Choper.Elk.Test.DAL", "Choper.Elk.Test.DAL\Choper.Elk.Test.DAL.csproj", "{28A57D8C-1DCD-4ACE-AC82-58061B05A3CF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Choper.Elk.Test.Model", "Choper.Elk.Test.Model\Choper.Elk.Test.Model.csproj", "{A75B79F8-E31F-414B-98F0-BF1DA55D6ED6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F3B8B5CB-CD7F-415A-B15F-B9E40302B5BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3B8B5CB-CD7F-415A-B15F-B9E40302B5BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3B8B5CB-CD7F-415A-B15F-B9E40302B5BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3B8B5CB-CD7F-415A-B15F-B9E40302B5BB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D94DC1EA-B155-40A7-B296-716DF56702E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D94DC1EA-B155-40A7-B296-716DF56702E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D94DC1EA-B155-40A7-B296-716DF56702E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D94DC1EA-B155-40A7-B296-716DF56702E8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C51EF2F6-8F3F-46BA-BCC0-4907C1FB86FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C51EF2F6-8F3F-46BA-BCC0-4907C1FB86FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C51EF2F6-8F3F-46BA-BCC0-4907C1FB86FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C51EF2F6-8F3F-46BA-BCC0-4907C1FB86FA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{31765424-9797-4FEC-8C51-E87DC46F48A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{31765424-9797-4FEC-8C51-E87DC46F48A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{31765424-9797-4FEC-8C51-E87DC46F48A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{31765424-9797-4FEC-8C51-E87DC46F48A1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{28A57D8C-1DCD-4ACE-AC82-58061B05A3CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{28A57D8C-1DCD-4ACE-AC82-58061B05A3CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{28A57D8C-1DCD-4ACE-AC82-58061B05A3CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{28A57D8C-1DCD-4ACE-AC82-58061B05A3CF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A75B79F8-E31F-414B-98F0-BF1DA55D6ED6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A75B79F8-E31F-414B-98F0-BF1DA55D6ED6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A75B79F8-E31F-414B-98F0-BF1DA55D6ED6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A75B79F8-E31F-414B-98F0-BF1DA55D6ED6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {89876A7C-151F-48A3-80E3-BA9F1D5E3FA5}
+	EndGlobalSection
+EndGlobal

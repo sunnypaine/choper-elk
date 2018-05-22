@@ -1,0 +1,3756 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>CPJIT.Library.CPJ4net</name>
+    </assembly>
+    <members>
+        <member name="T:CPJIT.Library.CPJ4net.ActivemqUtil.IMessageManager">
+            <summary>
+            消息管理器
+            </summary>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.ActivemqUtil.IMessageManager.SubscribeDestination">
+            <summary>
+            订阅消息
+            </summary>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.ActivemqUtil.IMessageManager.SubscribeDestination(CPJIT.Library.CPJ4net.ActivemqUtil.Enum.DestinationType,System.String)">
+            <summary>
+            订阅消息
+            </summary>
+            <param name="destinationType"></param>
+            <param name="destinationName"></param>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.ActivemqUtil.IMessageManager.Send(System.String)">
+            <summary>
+                发送消息
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.ActivemqUtil.IMessageManager.Send(System.String,CPJIT.Library.CPJ4net.ActivemqUtil.Enum.DestinationType,System.String)">
+            <summary>
+            发送消息
+            </summary>
+            <param name="message">消息内容</param>
+            <param name="destinationType">消息的目标模式</param>
+            <param name="destinationName">消息地址</param>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.ActivemqUtil.IMessageManager.CancelSubscribeDestination">
+            <summary>
+            取消订阅
+            </summary>
+        </member>
+        <member name="F:CPJIT.Library.CPJ4net.ActivemqUtil.Impl.AbstractMessageManager.activemqClient">
+            <summary>
+            消息管理器
+            </summary>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.ActivemqUtil.Impl.AbstractMessageManager.#ctor(CPJIT.Library.CPJ4net.ActivemqUtil.IActivemqClient)">
+            <summary>
+            使用指定参数创建实例。
+            </summary>
+            <param name="manager"></param>
+        </member>
+        <member name="P:CPJIT.Library.CPJ4net.ActivemqUtil.Impl.AbstractMessageManager.DestinationType">
+            <summary>
+            消息模式
+            </summary>
+        </member>
+        <member name="P:CPJIT.Library.CPJ4net.ActivemqUtil.Impl.AbstractMessageManager.DestinationName">
+            <summary>
+            消息目标
+            </summary>
+        </member>
+        <member name="P:CPJIT.Library.CPJ4net.ActivemqUtil.Impl.AbstractMessageManager.IsSubscibe">
+            <summary>
+            是否订阅消息
+            </summary>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.ActivemqUtil.Impl.AbstractMessageManager.ReciverMessage(System.Object,CPJIT.Library.CPJ4net.ActivemqUtil.Model.DataEventArgs)">
+            <summary>
+            接收消息
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.ActivemqUtil.Impl.AbstractMessageManager.SubscribeDestination">
+            <summary>
+            订阅目标
+            </summary>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.ActivemqUtil.Impl.AbstractMessageManager.SubscribeDestination(CPJIT.Library.CPJ4net.ActivemqUtil.Enum.DestinationType,System.String)">
+            <summary>
+            订阅目标
+            </summary>
+            <param name="destinationType">目标类型</param>
+            <param name="destinationName">目标名称</param>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.ActivemqUtil.Impl.AbstractMessageManager.Send(System.String)">
+            <summary>
+            发送消息
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.ActivemqUtil.Impl.AbstractMessageManager.Send(System.String,CPJIT.Library.CPJ4net.ActivemqUtil.Enum.DestinationType,System.String)">
+            <summary>
+            发送消息
+            </summary>
+            <param name="message"></param>
+            <param name="destinationType"></param>
+            <param name="destinationName"></param>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.ActivemqUtil.Impl.AbstractMessageManager.CancelSubscribeDestination">
+            <summary>
+            取消订阅目标
+            </summary>
+        </member>
+        <member name="T:CPJIT.Library.CPJ4net.ActivemqUtil.Impl.ActivemqClient">
+            <summary>
+            提供ActiveMQ客户端工具
+            </summary>
+        </member>
+        <member name="F:CPJIT.Library.CPJ4net.ActivemqUtil.Impl.ActivemqClient.connection">
+            <summary>
+            连接对象
+            </summary>
+        </member>
+        <member name="F:CPJIT.Library.CPJ4net.ActivemqUtil.Impl.ActivemqClient.connectionFactory">
+            <summary>
+            创建连接的工厂
+            </summary>
+        </member>
+        <member name="F:CPJIT.Library.CPJ4net.ActivemqUtil.Impl.ActivemqClient.session">
+            <summary>
+            会话对象
+            </summary>
+        </member>
+        <member name="F:CPJIT.Library.CPJ4net.ActivemqUtil.Impl.ActivemqClient.producerQueueDict">
+            <summary>
+            表示可由多个线程同时访问的Queue消息模式生的产者键值对线程安全集合（键：消息目标名称；值：消息生产者）
+            </summary>
+        </member>
+        <member name="F:CPJIT.Library.CPJ4net.ActivemqUtil.Impl.ActivemqClient.producerTopicDict">
+            <summary>
+            表示可由多个线程同时访问的Topic消息模式的生产者键值对线程安全集合（键：消息目标名称；值：消息生产者）
+            </summary>
+        </member>
+        <member name="F:CPJIT.Library.CPJ4net.ActivemqUtil.Impl.ActivemqClient.consumerQueueDict">
+            <summary>
+            表示可由多个线程同时访问的Queue消息模式的消费者键值对线程安全集合（键：消息目标名称；值：消息消费者）
+            </summary>
+        </member>
+        <member name="F:CPJIT.Library.CPJ4net.ActivemqUtil.Impl.ActivemqClient.consumerTopicDict">
+            <summary>
+            表示可由多个线程同时访问的Topic消息模式的消费者键值对线程安全集合（键：消息目标名称；值：消息消费者）
+            </summary>
+        </member>
+        <member name="F:CPJIT.Library.CPJ4net.ActivemqUtil.Impl.ActivemqClient.SyncLockObject">
+            <summary>
+            同步控制标识
+            </summary>
+        </member>
+        <member name="E:CPJIT.Library.CPJ4net.ActivemqUtil.Impl.ActivemqClient.ConnectionStatusChanged">
+            <summary>
+            当与ActiveMQ连接时发生
+            </summary>
+        </member>
+        <member name="E:CPJIT.Library.CPJ4net.ActivemqUtil.Impl.ActivemqClient.Error">
+            <summary>
+            当与ActiveMQ通讯过程中出现错误时发生
+            </summary>
+        </member>
+        <member name="P:CPJIT.Library.CPJ4net.ActivemqUtil.Impl.ActivemqClient.BrokerUri">
+            <summary>
+            ActiveMQ代理服务的地址（必须赋值）
+            </summary>
+        </member>
+        <member name="P:CPJIT.Library.CPJ4net.ActivemqUtil.Impl.ActivemqClient.UserName">
+            <summary>
+            连接ActiveMQ的用户名（非必须赋值）
+            </summary>
+        </member>
+        <member name="P:CPJIT.Library.CPJ4net.ActivemqUtil.Impl.ActivemqClient.Password">
+            <summary>
+            连接ActiveMQ的密码（非必须赋值）
+            </summary>
+        </member>
+        <member name="P:CPJIT.Library.CPJ4net.ActivemqUtil.Impl.ActivemqClient.ClientId">
+            <summary>
+            客户端Id名称（非必须赋值）
+            </summary>
+        </member>
+        <member name="P:CPJIT.Library.CPJ4net.ActivemqUtil.Impl.ActivemqClient.LiveTime">
+            <summary>
+            发送的消息持久化的有效时长
+            </summary>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.ActivemqUtil.Impl.ActivemqClient.#ctor">
+            <summary>
+            使用默认参数创建实例
+            </summary>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.ActivemqUtil.Impl.ActivemqClient.#ctor(System.String)">
+            <summary>
+            使用指定的参数创建实例
+            </summary>
+            <param name="brokerUri">ActiveMQ服务代理地址</param>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.ActivemqUtil.Impl.ActivemqClient.#ctor(System.String,System.String,System.String)">
+            <summary>
+            使用指定的参数创建实例。
+            </summary>
+            <param name="brokerUri">ActiveMQ服务代理地址</param>
+            <param name="userName">连接ActiveMQ所需的用户名</param>
+            <param name="password">连接Activ所需的密码</param>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.ActivemqUtil.Impl.ActivemqClient.#ctor(System.String,System.String,System.String,System.String)">
+            <summary>
+            使用指定的参数创建实例。
+            </summary>
+            <param name="brokerUri">ActiveMQ服务代理地址</param>
+            <param name="userName">连接ActiveMQ所需的用户名</param>
+            <param name="password">连接Activ所需的密码</param>
+            <param name="clientId">连接到ActiveMQ后，客户端在ActiveMQ上呈现的名称</param>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.ActivemqUtil.Impl.ActivemqClient.#ctor(System.String,System.String,System.String,System.String,System.TimeSpan)">
+            <summary>
+            使用指定的参数创建实例。
+            </summary>
+            <param name="brokerUri">ActiveMQ服务代理地址</param>
+            <param name="userName">连接ActiveMQ所需的用户名</param>
+            <param name="password">连接Activ所需的密码</param>
+            <param name="clientId">连接到ActiveMQ后，客户端在ActiveMQ上呈现的名称</param>
+            <param name="liveTime">客户端发送的消息的持久化有效时长</param>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.ActivemqUtil.Impl.ActivemqClient.CreateProducer(CPJIT.Library.CPJ4net.ActivemqUtil.Enum.DestinationType,System.String)">
+            <summary>
+            创建生产者
+            </summary>
+            <param name="destinationType">目标类型</param>
+            <param name="destinationName">目标名称</param>
+            <returns>返回生产者</returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.ActivemqUtil.Impl.ActivemqClient.CreateConsumer(CPJIT.Library.CPJ4net.ActivemqUtil.Enum.DestinationType,System.String)">
+            <summary>
+            创建消费者
+            </summary>
+            <param name="destinationType">目标类型</param>
+            <param name="destinationName">目标名称</param>
+            <returns></returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.ActivemqUtil.Impl.ActivemqClient.CreateConsumer(CPJIT.Library.CPJ4net.ActivemqUtil.Enum.DestinationType,System.String,System.Boolean)">
+            <summary>
+            创建消费者
+            </summary>
+            <param name="destinationType">目标类型</param>
+            <param name="destinationName">目标名称</param>
+            <param name="ignoreExpiration">是否忽略过期</param>
+            <returns></returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.ActivemqUtil.Impl.ActivemqClient.CreateConsumer(CPJIT.Library.CPJ4net.ActivemqUtil.Enum.DestinationType,System.String,System.String,System.Boolean,System.Boolean)">
+            <summary>
+            创建消费者
+            </summary>
+            <param name="destinationType">目标类型</param>
+            <param name="destinationName">目标名称</param>
+            <param name="selector">选择器</param>
+            <param name="ignoreExpiration">是否忽略消费者过期</param>
+            <param name="isDurable">消费者是否持久化</param>
+            <returns>返回消费者</returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.ActivemqUtil.Impl.ActivemqClient.SubscribeDestination(Apache.NMS.IMessageConsumer,System.EventHandler{CPJIT.Library.CPJ4net.ActivemqUtil.Model.DataEventArgs})">
+            <summary>
+            使用指定的消费者订阅一个目标
+            </summary>
+            <param name="destinationType"></param>
+            <param name="destinationName"></param>
+            <param name="handler"></param>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.ActivemqUtil.Impl.ActivemqClient.Connection_ConnectionResumedListener">
+            <summary>
+            当与ActiveMQ连接上时发生
+            </summary>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.ActivemqUtil.Impl.ActivemqClient.Connection_ConnectionInterruptedListener">
+            <summary>
+            当与ActiveMQ的连接断开时发生
+            </summary>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.ActivemqUtil.Impl.ActivemqClient.Connection_ExceptionListener(System.Exception)">
+            <summary>
+            当与ActiveMQ通讯过程中发生变化
+            </summary>
+            <param name="exception"></param>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.ActivemqUtil.Impl.ActivemqClient.Connect">
+            <summary>
+            连接ActiveMQ
+            </summary>
+            <param name="brokerUri">AcitveMQ服务代理的地址</param>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.ActivemqUtil.Impl.ActivemqClient.Close">
+            <summary>
+            断开与ActiveMQ的连接
+            </summary>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.ActivemqUtil.Impl.ActivemqClient.SubscribeDestination(CPJIT.Library.CPJ4net.ActivemqUtil.Enum.DestinationType,System.String,System.EventHandler{CPJIT.Library.CPJ4net.ActivemqUtil.Model.DataEventArgs})">
+            <summary>
+            订阅一个目标
+            </summary>
+            <param name="destinationType"></param>
+            <param name="destinationName"></param>
+            <param name="handler"></param>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.ActivemqUtil.Impl.ActivemqClient.SubscribeDestination(CPJIT.Library.CPJ4net.ActivemqUtil.Enum.DestinationType,System.String,System.Boolean,System.EventHandler{CPJIT.Library.CPJ4net.ActivemqUtil.Model.DataEventArgs})">
+            <summary>
+            订阅一个目标
+            </summary>
+            <param name="destinationType"></param>
+            <param name="destinationName"></param>
+            <param name="ignoreExpiration"></param>
+            <param name="handler"></param>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.ActivemqUtil.Impl.ActivemqClient.SubscribeDestination(CPJIT.Library.CPJ4net.ActivemqUtil.Enum.DestinationType,System.String,System.String,System.Boolean,System.Boolean,System.EventHandler{CPJIT.Library.CPJ4net.ActivemqUtil.Model.DataEventArgs})">
+            <summary>
+            订阅一个目标
+            </summary>
+            <param name="destinationType"></param>
+            <param name="destinationName"></param>
+            <param name="selector"></param>
+            <param name="ignoreExpiration"></param>
+            <param name="isDurable"></param>
+            <param name="handler"></param>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.ActivemqUtil.Impl.ActivemqClient.CancelSubscribeDestination(CPJIT.Library.CPJ4net.ActivemqUtil.Enum.DestinationType,System.String)">
+            <summary>
+            取消订阅一个目标
+            </summary>
+            <param name="destinationType"></param>
+            <param name="destination"></param>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.ActivemqUtil.Impl.ActivemqClient.Send(System.String,CPJIT.Library.CPJ4net.ActivemqUtil.Enum.DestinationType,System.String)">
+            <summary>
+            发送文本消息
+            </summary>
+            <param name="text"></param>
+            <param name="destinationType"></param>
+            <param name="destinationName"></param>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.ActivemqUtil.Impl.ActivemqClient.Send(System.String,CPJIT.Library.CPJ4net.ActivemqUtil.Enum.DestinationType,System.String,System.Boolean)">
+            <summary>
+            发送文本消息
+            </summary>
+            <param name="text"></param>
+            <param name="destinationType"></param>
+            <param name="destinationName"></param>
+            <param name="isPersistent"></param>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.ActivemqUtil.Impl.ActivemqClient.Send(System.String,System.Collections.Generic.IDictionary{System.String,System.String},CPJIT.Library.CPJ4net.ActivemqUtil.Enum.DestinationType,System.String,System.Boolean)">
+            <summary>
+            发送文本消息
+            </summary>
+            <param name="text"></param>
+            <param name="messageProperties"></param>
+            <param name="destinationType"></param>
+            <param name="destinationName"></param>
+            <param name="isPersistent"></param>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.ActivemqUtil.Impl.ActivemqClient.Send(System.Byte[],CPJIT.Library.CPJ4net.ActivemqUtil.Enum.DestinationType,System.String)">
+            <summary>
+            发送字节数组消息
+            </summary>
+            <param name="bytes"></param>
+            <param name="destinationType"></param>
+            <param name="destinationName"></param>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.ActivemqUtil.Impl.ActivemqClient.Send(System.Byte[],CPJIT.Library.CPJ4net.ActivemqUtil.Enum.DestinationType,System.String,System.Boolean)">
+            <summary>
+            发送字节数组消息
+            </summary>
+            <param name="bytes"></param>
+            <param name="destinationType"></param>
+            <param name="destinationName"></param>
+            <param name="isPersistent"></param>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.ActivemqUtil.Impl.ActivemqClient.Send(System.Byte[],System.Collections.Generic.IDictionary{System.String,System.String},CPJIT.Library.CPJ4net.ActivemqUtil.Enum.DestinationType,System.String,System.Boolean)">
+            <summary>
+            发送字节数组消息
+            </summary>
+            <param name="bytes"></param>
+            <param name="messageProperties"></param>
+            <param name="destinationType"></param>
+            <param name="destination"></param>
+            <param name="isPersistent"></param>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.ActivemqUtil.Impl.ActivemqClient.Dispose">
+            <summary>
+            释放对象
+            </summary>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.ActivemqUtil.Impl.ActivemqClient.Finalize">
+            <summary>
+            析构函数，释放对象
+            </summary>
+        </member>
+        <member name="T:CPJIT.Library.CPJ4net.ActivemqUtil.Model.DataEventArgs">
+            <summary>
+            包含与AcitveMQ收发消息的事件关联的信息和事件数据。
+            </summary>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.ActivemqUtil.Model.DataEventArgs.#ctor">
+            <summary>
+            使用默认的参数创建实例。
+            </summary>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.ActivemqUtil.Model.DataEventArgs.#ctor(System.String,System.Byte[])">
+            <summary>
+            使用指定的参数创建实例。
+            </summary>
+            <param name="content">消息内容</param>
+            <param name="bytes">消息数据</param>
+        </member>
+        <member name="T:CPJIT.Library.CPJ4net.ActivemqUtil.Model.ExceptionEventArgs">
+            <summary>
+            包含与AcitveMQ异常的事件关联的信息和事件数据。
+            </summary>
+        </member>
+        <member name="P:CPJIT.Library.CPJ4net.ActivemqUtil.Model.ExceptionEventArgs.Exception">
+            <summary>
+            异常信息
+            </summary>
+        </member>
+        <member name="T:CPJIT.Library.CPJ4net.ActivemqUtil.Model.StatusEventArgs">
+            <summary>
+            包含与AcitveMQ连接状态的信息和事件数据。
+            </summary>
+        </member>
+        <member name="P:CPJIT.Library.CPJ4net.ActivemqUtil.Model.StatusEventArgs.IsConnected">
+            <summary>
+            是否已连接
+            </summary>
+        </member>
+        <member name="T:CPJIT.Library.CPJ4net.ActivemqUtil.Enum.DestinationType">
+            <summary>
+            表示目标类型，指定消息模式
+            </summary>
+        </member>
+        <member name="F:CPJIT.Library.CPJ4net.ActivemqUtil.Enum.DestinationType.Queue">
+            <summary>
+            点对点消息模式
+            </summary>
+        </member>
+        <member name="F:CPJIT.Library.CPJ4net.ActivemqUtil.Enum.DestinationType.Topic">
+            <summary>
+            发布订阅消息模式
+            </summary>
+        </member>
+        <member name="T:CPJIT.Library.CPJ4net.ActivemqUtil.IActivemqClient">
+            <summary>
+            提供ActiveMQ客户端工具的接口
+            </summary>
+        </member>
+        <member name="P:CPJIT.Library.CPJ4net.ActivemqUtil.IActivemqClient.BrokerUri">
+            <summary>
+            ActiveMQ代理服务的地址（必须赋值）
+            </summary>
+        </member>
+        <member name="P:CPJIT.Library.CPJ4net.ActivemqUtil.IActivemqClient.UserName">
+            <summary>
+            连接ActiveMQ的用户名（非必须赋值）
+            </summary>
+        </member>
+        <member name="P:CPJIT.Library.CPJ4net.ActivemqUtil.IActivemqClient.Password">
+            <summary>
+            连接ActiveMQ的密码（非必须赋值）
+            </summary>
+        </member>
+        <member name="P:CPJIT.Library.CPJ4net.ActivemqUtil.IActivemqClient.ClientId">
+            <summary>
+            客户端Id名称（非必须赋值）
+            </summary>
+        </member>
+        <member name="P:CPJIT.Library.CPJ4net.ActivemqUtil.IActivemqClient.LiveTime">
+            <summary>
+            发送的消息持久化的有效时长
+            </summary>
+        </member>
+        <member name="E:CPJIT.Library.CPJ4net.ActivemqUtil.IActivemqClient.ConnectionStatusChanged">
+            <summary>
+            当与服务端连接状态变化时发生
+            </summary>
+        </member>
+        <member name="E:CPJIT.Library.CPJ4net.ActivemqUtil.IActivemqClient.Error">
+            <summary>
+            当出现错误时发生。
+            </summary>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.ActivemqUtil.IActivemqClient.Connect">
+            <summary>
+            连接ActiveMQ
+            </summary>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.ActivemqUtil.IActivemqClient.Close">
+            <summary>
+            断开连接ActiveMQ
+            </summary>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.ActivemqUtil.IActivemqClient.SubscribeDestination(CPJIT.Library.CPJ4net.ActivemqUtil.Enum.DestinationType,System.String,System.EventHandler{CPJIT.Library.CPJ4net.ActivemqUtil.Model.DataEventArgs})">
+            <summary>
+            订阅消息
+            </summary>
+            <param name="destinationType"></param>
+            <param name="destinationName"></param>
+            <param name="handler">回调的目标方法</param>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.ActivemqUtil.IActivemqClient.SubscribeDestination(CPJIT.Library.CPJ4net.ActivemqUtil.Enum.DestinationType,System.String,System.Boolean,System.EventHandler{CPJIT.Library.CPJ4net.ActivemqUtil.Model.DataEventArgs})">
+            <summary>
+            订阅消息
+            </summary>
+            <param name="destinationType"></param>
+            <param name="destinationName"></param>
+            <param name="ignoreExpiration"></param>
+            <param name="handler"></param>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.ActivemqUtil.IActivemqClient.SubscribeDestination(CPJIT.Library.CPJ4net.ActivemqUtil.Enum.DestinationType,System.String,System.String,System.Boolean,System.Boolean,System.EventHandler{CPJIT.Library.CPJ4net.ActivemqUtil.Model.DataEventArgs})">
+            <summary>
+            订阅消息
+            </summary>
+            <param name="destinationType"></param>
+            <param name="destinationName"></param>
+            <param name="selector"></param>
+            <param name="ignoreExpiration"></param>
+            <param name="isDurable"></param>
+            <param name="handler"></param>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.ActivemqUtil.IActivemqClient.CancelSubscribeDestination(CPJIT.Library.CPJ4net.ActivemqUtil.Enum.DestinationType,System.String)">
+            <summary>
+            取消订阅
+            </summary>
+            <param name="destinationType"></param>
+            <param name="destination"></param>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.ActivemqUtil.IActivemqClient.Send(System.String,CPJIT.Library.CPJ4net.ActivemqUtil.Enum.DestinationType,System.String)">
+            <summary>
+            发送文本消息
+            </summary>
+            <param name="destinationType"></param>
+            <param name="destType"></param>
+            <param name="destination"></param>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.ActivemqUtil.IActivemqClient.Send(System.String,CPJIT.Library.CPJ4net.ActivemqUtil.Enum.DestinationType,System.String,System.Boolean)">
+            <summary>
+            发送文本消息
+            </summary>
+            <param name="text"></param>
+            <param name="destinationType"></param>
+            <param name="destinationName"></param>
+            <param name="isPersistent"></param>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.ActivemqUtil.IActivemqClient.Send(System.String,System.Collections.Generic.IDictionary{System.String,System.String},CPJIT.Library.CPJ4net.ActivemqUtil.Enum.DestinationType,System.String,System.Boolean)">
+            <summary>
+            发送文本消息
+            </summary>
+            <param name="text"></param>
+            <param name="msgProperties"></param>
+            <param name="destinationType"></param>
+            <param name="destinationName"></param>
+            <param name="isPersistent"></param>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.ActivemqUtil.IActivemqClient.Send(System.Byte[],CPJIT.Library.CPJ4net.ActivemqUtil.Enum.DestinationType,System.String)">
+            <summary>
+            发送字节数组消息
+            </summary>
+            <param name="bytes"></param>
+            <param name="destinationType"></param>
+            <param name="destinationName"></param>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.ActivemqUtil.IActivemqClient.Send(System.Byte[],CPJIT.Library.CPJ4net.ActivemqUtil.Enum.DestinationType,System.String,System.Boolean)">
+            <summary>
+            发送字节数组消息
+            </summary>
+            <param name="bytes"></param>
+            <param name="destinationType"></param>
+            <param name="destinationName"></param>
+            <param name="isPersistent"></param>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.ActivemqUtil.IActivemqClient.Send(System.Byte[],System.Collections.Generic.IDictionary{System.String,System.String},CPJIT.Library.CPJ4net.ActivemqUtil.Enum.DestinationType,System.String,System.Boolean)">
+            <summary>
+            发送字节数组消息
+            </summary>
+            <param name="bytes"></param>
+            <param name="msgProperties"></param>
+            <param name="destinationType"></param>
+            <param name="destination"></param>
+            <param name="isPersistent"></param>
+        </member>
+        <member name="T:CPJIT.Library.CPJ4net.CommonUtil.DateTimeUtil">
+            <summary>
+            日期工具
+            </summary>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.CommonUtil.DateTimeUtil.GetLastMonthFirstDay">
+            <summary>
+            获取上月的第一天
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.CommonUtil.DateTimeUtil.GetLastMonthLastDay">
+            <summary>
+            获取上月的最后一天
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.CommonUtil.DateTimeUtil.GetThisMonthFirstDay">
+            <summary>
+            获取本月的第一天
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.CommonUtil.DateTimeUtil.GetThisMonthLastDay">
+            <summary>
+            获取本月的最后一天
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.CommonUtil.DateTimeUtil.GetNextMonthFirstDay">
+            <summary>
+            获取本月的第一天
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.CommonUtil.DateTimeUtil.GetNextMonthLastDay">
+            <summary>
+            获取下月的最后一天
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.CommonUtil.DateTimeUtil.DateTimeString(System.DateTime,CPJIT.Library.CPJ4net.CommonUtil.DateTimeFormatStyle)">
+            <summary>
+            格式化日期为指定样式的字符串
+            </summary>
+            <param name="dateTime">日期</param>
+            <param name="dateTimeFormatStyle">日期字符串样式</param>
+            <returns>日期字符串</returns>
+        </member>
+        <member name="T:CPJIT.Library.CPJ4net.CommonUtil.DateTimeFormatStyle">
+            <summary>
+            时间格式化的样式
+            </summary>
+        </member>
+        <member name="F:CPJIT.Library.CPJ4net.CommonUtil.DateTimeFormatStyle.YYYY">
+            <summary>
+            仅显示年（例如：2015）
+            </summary>
+        </member>
+        <member name="F:CPJIT.Library.CPJ4net.CommonUtil.DateTimeFormatStyle.YYYYMM">
+            <summary>
+            显示年和月（例如：201506）
+            </summary>
+        </member>
+        <member name="F:CPJIT.Library.CPJ4net.CommonUtil.DateTimeFormatStyle.YYYYMMDD">
+            <summary>
+            显示年月日（例如：20150626）
+            </summary>
+        </member>
+        <member name="F:CPJIT.Library.CPJ4net.CommonUtil.DateTimeFormatStyle.YYYYMMDDHHMMSS">
+            <summary>
+            显示年月日时分秒（例如：20150626232856）
+            </summary>
+        </member>
+        <member name="F:CPJIT.Library.CPJ4net.CommonUtil.DateTimeFormatStyle.YYYYMMDDHHMMSSFFF">
+            <summary>
+            显示年月日时分秒毫秒（例如：20150626232856165）
+            </summary>
+        </member>
+        <member name="F:CPJIT.Library.CPJ4net.CommonUtil.DateTimeFormatStyle.YYYYMM1">
+            <summary>
+            显示年和月（例如：2015/06）
+            </summary>
+        </member>
+        <member name="F:CPJIT.Library.CPJ4net.CommonUtil.DateTimeFormatStyle.YYYYMMDD1">
+            <summary>
+            显示年月日（例如：2015/06/26）
+            </summary>
+        </member>
+        <member name="F:CPJIT.Library.CPJ4net.CommonUtil.DateTimeFormatStyle.YYYYMMDDHHMMSS1">
+            <summary>
+            显示年月日时分秒（例如：2015/06/26 23:33:45）
+            </summary>
+        </member>
+        <member name="F:CPJIT.Library.CPJ4net.CommonUtil.DateTimeFormatStyle.YYYYMMDDHHMMSSFFF1">
+            <summary>
+            显示年月日时分秒毫秒（例如：2015/06/26 23:33:45.165）
+            </summary>
+        </member>
+        <member name="F:CPJIT.Library.CPJ4net.CommonUtil.DateTimeFormatStyle.YYYYMM2">
+            <summary>
+            显示年和月（例如：2015-06）
+            </summary>
+        </member>
+        <member name="F:CPJIT.Library.CPJ4net.CommonUtil.DateTimeFormatStyle.YYYYMMDD2">
+            <summary>
+            显示年月日（例如：2015-06-26）
+            </summary>
+        </member>
+        <member name="F:CPJIT.Library.CPJ4net.CommonUtil.DateTimeFormatStyle.YYYYMMDDHHMMSS2">
+            <summary>
+            显示年月日时分秒（例如：2015-06-26 23:33:45）
+            </summary>
+        </member>
+        <member name="F:CPJIT.Library.CPJ4net.CommonUtil.DateTimeFormatStyle.YYYYMMDDHHMMSSFFF2">
+            <summary>
+            显示年月日时分秒毫秒（例如：2015-06-26 23:33:45.165）
+            </summary>
+        </member>
+        <member name="T:CPJIT.Library.CPJ4net.CommonUtil.DelegateUtil">
+            <summary>
+            委托工具类
+            </summary>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.CommonUtil.DelegateUtil.UIHelper(System.Windows.Forms.Control,System.Windows.Forms.MethodInvoker)">
+            <summary>
+            跨线程操作控件
+            </summary>
+            <param name="control"></param>
+            <param name="func"></param>
+        </member>
+        <member name="T:CPJIT.Library.CPJ4net.CommonUtil.DelegateUtil.SetControlTextHandler">
+            <summary>
+            委托声明--设置控件文本
+            </summary>
+            <param name="control">控件</param>
+            <param name="text">文本</param>
+            <param name="append">是否追加</param>
+        </member>
+        <member name="F:CPJIT.Library.CPJ4net.CommonUtil.DelegateUtil.setControlTextHandler">
+            <summary>
+            委托定义--设置控件文本
+            </summary>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.CommonUtil.DelegateUtil.SetControlTextMethod(System.Windows.Forms.Control,System.String,System.Boolean)">
+            <summary>
+            委托方法--设置控件文本
+            </summary>
+            <param name="control"></param>
+            <param name="text"></param>
+            <param name="append"></param>
+        </member>
+        <member name="T:CPJIT.Library.CPJ4net.CommonUtil.DelegateUtil.SetControlEnableHandler">
+            <summary>
+            委托声明--设置控件是否启用
+            </summary>
+            <param name="control">控件</param>
+            <param name="enable">是否启用（true：启用；false：禁用）</param>
+        </member>
+        <member name="F:CPJIT.Library.CPJ4net.CommonUtil.DelegateUtil.setControlEnableHandler">
+            <summary>
+            委托定义--设置控件是否启用
+            </summary>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.CommonUtil.DelegateUtil.SetControlEnableMethod(System.Windows.Forms.Control,System.Boolean)">
+            <summary>
+            委托方法--设置控件是否启用
+            </summary>
+            <param name="control">空间</param>
+            <param name="enable"></param>
+        </member>
+        <member name="T:CPJIT.Library.CPJ4net.CommonUtil.DelegateUtil.SetControlVisibilityHandler">
+            <summary>
+            委托声明--设置控件是否显示
+            </summary>
+            <param name="control">控件</param>
+            <param name="visibility">是否显示（true：显示；false：隐藏）</param>
+        </member>
+        <member name="F:CPJIT.Library.CPJ4net.CommonUtil.DelegateUtil.setControlVisibilityHandler">
+            <summary>
+            委托定义--设置控件是否显示
+            </summary>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.CommonUtil.DelegateUtil.SetControlVisibilityMethod(System.Windows.Forms.Control,System.Boolean)">
+            <summary>
+            委托方法--设置空间是否显示
+            </summary>
+            <param name="control"></param>
+            <param name="visibility"></param>
+        </member>
+        <member name="T:CPJIT.Library.CPJ4net.CommonUtil.DelegateUtil.SetDataGridViewDataByDataTableHandler">
+            <summary>
+            委托声明--设置DataGridView数据
+            </summary>
+            <param name="grid">DataGridView控件</param>
+            <param name="dt">DataTable数据</param>
+        </member>
+        <member name="F:CPJIT.Library.CPJ4net.CommonUtil.DelegateUtil.setDataGridViewDataByDataTableHandler">
+            <summary>
+            委托定义--设置DataGridView数据
+            </summary>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.CommonUtil.DelegateUtil.SetDataGridViewDataByDataTableMethod(System.Windows.Forms.DataGridView,System.Data.DataTable)">
+            <summary>
+            委托方法--设置DataGridView数据
+            </summary>
+            <param name="grid"></param>
+            <param name="dt"></param>
+        </member>
+        <member name="T:CPJIT.Library.CPJ4net.CommonUtil.DelegateUtil.SetDataGridViewDataByObjectsHandler">
+            <summary>
+            委托声明--设置DataGridView数据
+            </summary>
+            <param name="grid">DataGridView控件</param>
+            <param name="values">数据数组</param>
+        </member>
+        <member name="F:CPJIT.Library.CPJ4net.CommonUtil.DelegateUtil.setDataGridViewDataByObjectsHandler">
+            <summary>
+            委托定义--设置DataGridView数据
+            </summary>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.CommonUtil.DelegateUtil.SetDataGridViewDataByObjectsMethod(System.Windows.Forms.DataGridView,System.Object[],System.Int32)">
+            <summary>
+            委托方法--设置DataGridView数据
+            </summary>
+            <param name="grid"></param>
+            <param name="values"></param>
+            <param name="count">表格中数据最大显示量。如果为0，则表示全都显示。</param>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.CommonUtil.StringUtil.ToDBC(System.String)">
+            <summary>
+            将字符串转换成半角。
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.CommonUtil.StringUtil.ToSBC(System.String)">
+            <summary>
+            将字符串转换成全角。
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.CommonUtil.StringUtil.GetNumber(System.String)">
+            <summary>
+            获取字符串中的数字。
+            </summary>
+            <param name="str">被判断的字符串。</param>
+            <returns>只包含数字的字符串。</returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.CommonUtil.StringUtil.IsExistLetter(System.String)">
+            <summary>
+            判断字符串中是否含有英文字母。
+            </summary>
+            <param name="str">被判断的字符串。</param>
+            <returns>true，含有；false，不含有。</returns>
+        </member>
+        <member name="T:CPJIT.Library.CPJ4net.CommonUtil.ZipUtil">
+            <summary>
+            解压缩工具类
+            </summary>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.CommonUtil.ZipUtil.ZipFile(System.String,System.String,System.Boolean)">
+            <summary>
+            压缩文件
+            </summary>
+            <param name="dirSource">文件源路径</param>
+            <param name="zipFile">压缩文件名称</param>
+            <param name="emptyFolder">是否压缩空文件夹</param>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.CommonUtil.ZipUtil.ZipFile(System.String,System.String,System.String,System.Boolean)">
+            <summary>
+            压缩文件
+            </summary>
+            <param name="dirSource">文件源路径</param>
+            <param name="zipFile">压缩文件名称</param>
+            <param name="fileFilter">文件过滤条件</param>
+            <param name="emptyFolder">是否压缩空文件夹</param>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.CommonUtil.ZipUtil.UnZipFile(System.String,System.String,System.Boolean)">
+            <summary>
+            解压文件
+            </summary>
+            <param name="zipFile">被解压的压缩文件</param>
+            <param name="dirAim">解压到目标路径</param>
+            <param name="emptyFolder">是否解压空文件夹</param>
+        </member>
+        <member name="T:CPJIT.Library.CPJ4net.PropertiesUtil.Exceptions.PropertiesParseException">
+            <summary>
+            当Properties配制文件的配制信息不合法时引发的异常。
+            </summary>
+        </member>
+        <member name="T:CPJIT.Library.CPJ4net.PropertiesUtil.PropertiesUtil">
+            <summary>
+            提供读取properties配置文件。
+            </summary>
+        </member>
+        <member name="F:CPJIT.Library.CPJ4net.PropertiesUtil.PropertiesUtil.dict">
+            <summary>
+            配置信息字典。
+            </summary>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.PropertiesUtil.PropertiesUtil.#ctor(System.String)">
+            <summary>
+            使用指定的参数创建实例。
+            </summary>
+            <param name="propertiesUri">包含*.properties配置文件的路径。</param>
+            <exception cref="T:System.ArgumentException">参数路径不合法。</exception>
+            <exception cref="T:System.IO.FileNotFoundException">指定的文件找不到。</exception>
+        </member>
+        <member name="P:CPJIT.Library.CPJ4net.PropertiesUtil.PropertiesUtil.Item(System.String)">
+            <summary>
+            获取指定键的项。
+            </summary>
+            <param name="key">键</param>
+            <returns></returns>
+        </member>
+        <member name="P:CPJIT.Library.CPJ4net.PropertiesUtil.PropertiesUtil.Keys">
+            <summary>
+            获取配置信息的所有键
+            </summary>
+        </member>
+        <member name="P:CPJIT.Library.CPJ4net.PropertiesUtil.PropertiesUtil.Values">
+            <summary>
+            获取配置信息的所有值。
+            </summary>
+        </member>
+        <member name="P:CPJIT.Library.CPJ4net.PropertiesUtil.PropertiesUtil.Count">
+            <summary>
+            获取配置信息的数量。
+            </summary>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.PropertiesUtil.PropertiesUtil.LoadFile(System.String)">
+            <summary>
+            加载并解析文件。
+            </summary>
+            <param name="proertiesUri"></param>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.IDBAccess.TestConnect">
+            <summary>
+            测试连接
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.IDBAccess.ExecuteNonQuery(System.String,System.Data.CommandType)">
+            <summary>
+            执行增、删、改的SQL语句或者存储过程，返回受影响的行数
+            </summary>
+            <param name="cmdText">执行的命令或者存储过程的名称</param>
+            <param name="cmdType">执行的命令的类型（SQL语句或者存储过程）</param>
+            <returns>受影响的行数</returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.IDBAccess.ExecuteNonQuery(System.String,System.Data.CommandType,System.Collections.Hashtable)">
+            <summary>
+            执行带参数的增、删、改的SQL语句或者存储过程，返回受影响的行数
+            </summary>
+            <param name="cmdText">执行的命令或者存储过程的名称</param>
+            <param name="cmdType">执行的命令的类型（SQL语句或者存储过程）</param>
+            <param name="paras">表示参数的键值对（键：参数名称；值：参数值）</param>
+            <returns>受影响的行数</returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.IDBAccess.ExecuteDateSet(System.String,System.Data.CommandType)">
+            <summary>
+            执行SQL查询语句或者存储过程，返回DataSet
+            </summary>
+            <param name="cmdText">执行的命令或者存储过程的名称</param>
+            <param name="cmdType">执行的命令的类型（SQL语句或者存储过程）</param>
+            <returns>返回DataSet</returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.IDBAccess.ExecuteDateSet(System.String,System.Data.CommandType,System.Collections.Hashtable)">
+            <summary>
+            执行带参数的SQL查询语句或者存储过程，返回DataSet
+            </summary>
+            <param name="cmdText">执行的命令或者存储过程的名称</param>
+            <param name="cmdType">执行的命令的类型（SQL语句或者存储过程）</param>
+            <param name="paras">表示参数的键值对（键：参数名称；值：参数值）</param>
+            <returns>返回DataSet</returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.IDBAccess.ExecuteDataReader(System.String,System.Data.CommandType)">
+            <summary>
+            执行SQL查询语句或者存储过程，返回SqlDatareader对象
+            </summary>
+            <param name="cmdText">执行的命令或者存储过程的名称</param>
+            <param name="cmdType">执行的命令的类型（SQL语句或者存储过程）</param>
+            <returns>返回SqlDatareader对象</returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.IDBAccess.ExecuteDataReader(System.String,System.Data.CommandType,System.Collections.Hashtable)">
+            <summary>
+            执行带参数的SQL查询语句或者存储过程，返回SqlDatareader对象
+            </summary>
+            <param name="cmdText">执行的命令或者存储过程的名称</param>
+            <param name="cmdType">执行的命令的类型（SQL语句或者存储过程）</param>
+            <param name="paras">表示参数的键值对（键：参数名称；值：参数值）</param>
+            <returns>返回SqlDatareader对象</returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.IDBAccess.ExecuteScalar(System.String,System.Data.CommandType)">
+            <summary>
+            执行查找字段的SQL查询语句或者存储过程，返回object类型的字段变量
+            </summary>
+            <param name="cmdText">执行的命令或者存储过程的名称</param>
+            <param name="cmdType">执行的命令的类型（SQL语句或者存储过程）</param>
+            <returns>返回object类型的字段变量</returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.IDBAccess.ExecuteScalar(System.String,System.Data.CommandType,System.Collections.Hashtable)">
+            <summary>
+            执行查找字段的SQL查询语句或者存储过程，返回object类型的字段变量
+            </summary>
+            <param name="cmdText">执行的命令或者存储过程的名称</param>
+            <param name="cmdType">执行的命令的类型（SQL语句或者存储过程）</param>
+            <param name="paras">表示参数的键值对（键：参数名称；值：参数值）</param>
+            <returns>返回object类型的字段变量</returns>
+        </member>
+        <member name="T:CPJIT.Library.CPJ4net.DataBaseUtil.IMongoDBAccess">
+            <summary>
+            提供MongoDB的数据库交互工具接口。
+            </summary>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.IMongoDBAccess.Insert``1(System.String,``0)">
+            <summary>
+            新增一条数据。
+            </summary>
+            <typeparam name="T">数据类型。</typeparam>
+            <param name="collectionName">MongoDB的集合名称。</param>
+            <param name="entity">数据实体对象。</param>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.IMongoDBAccess.InsertMany``1(System.String,System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            新增多条数据。
+            </summary>
+            <typeparam name="T">数据类型。</typeparam>
+            <param name="collectionName">MongoDB的集合名称。</param>
+            <param name="entities">数据实体对象。</param>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.IMongoDBAccess.Delete``1(System.String,System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
+            <summary>
+            删除一条数据。
+            </summary>
+            <typeparam name="T">数据类型。</typeparam>
+            <param name="collectionName">MongoDB的集合名称。</param>
+            <param name="filter">筛选条件。表达式示例：p => p.UserId == "admin"。</param>
+            <returns></returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.IMongoDBAccess.Delete``1(System.String,MongoDB.Driver.FilterDefinition{``0})">
+            <summary>
+            删除一条数据。
+            </summary>
+            <typeparam name="T">数据类型。</typeparam>
+            <param name="collectionName">MongoDB的集合名称。</param>
+            <param name="filter">筛选条件。表达式示例：Builders&lt;T&gt;.Filter.Eq(string key, object value)。key区分大小写。</param>
+            <returns></returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.IMongoDBAccess.Delete``1(System.String,System.Collections.Generic.IDictionary{System.String,System.Object})">
+            <summary>
+            删除一条数据。
+            </summary>
+            <typeparam name="T">数据类型。</typeparam>
+            <param name="collectionName">MongoDB的集合名称。</param>
+            <param name="filter">筛选条件。</param>
+            <returns></returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.IMongoDBAccess.DeleteMany``1(System.String,System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
+            <summary>
+            删除多条数据。
+            </summary>
+            <typeparam name="T">数据类型。</typeparam>
+            <param name="collectionName">MongoDB的集合名称。</param>
+            <param name="filter">筛选条件。表达式示例：p => p.UserId == "admin"。</param>
+            <returns></returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.IMongoDBAccess.DeleteMany``1(System.String,MongoDB.Driver.FilterDefinition{``0})">
+            <summary>
+            删除多条数据。
+            </summary>
+            <typeparam name="T">数据类型。</typeparam>
+            <param name="collectionName">MongoDB的集合名称。</param>
+            <param name="filter">筛选条件。表达式示例：Builders&lt;T&gt;.Filter.Eq(string key, object value)。key区分大小写。</param>
+            <returns></returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.IMongoDBAccess.DeleteMany``1(System.String,System.Collections.Generic.IDictionary{System.String,System.Object})">
+            <summary>
+            删除多条数据。
+            </summary>
+            <typeparam name="T">数据类型。</typeparam>
+            <param name="collectionName">MongoDB的集合名称。</param>
+            <param name="filter">筛选条件。</param>
+            <returns></returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.IMongoDBAccess.Update``1(System.String,System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},MongoDB.Driver.UpdateDefinition{``0})">
+            <summary>
+            更新数据。
+            </summary>
+            <typeparam name="T">数据的类型。</typeparam>
+            <param name="collectionName">MongoDB集合的名称。</param>
+            <param name="filter">筛选条件。表达式示例：p => p.UserId == "admin"。</param>
+            <param name="update">将要更新的内容。表达式示例：Builders&lt;T&gt;.Update.Set(string key, object value)。</param>
+            <returns></returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.IMongoDBAccess.Update``1(System.String,System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Collections.Generic.IDictionary{System.String,System.Object})">
+            <summary>
+            更新数据。
+            </summary>
+            <typeparam name="T">数据的类型。</typeparam>
+            <param name="collectionName">MongoDB集合的名称。</param>
+            <param name="filter">筛选条件。表达式示例：p => p.UserId == "admin"。</param>
+            <param name="update">将要更新的内容。</param>
+            <returns></returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.IMongoDBAccess.Update``1(System.String,MongoDB.Driver.FilterDefinition{``0},MongoDB.Driver.UpdateDefinition{``0})">
+            <summary>
+            更新数据。
+            </summary>
+            <typeparam name="T">数据的类型。</typeparam>
+            <param name="collectionName">MongoDB集合的名称。</param>
+            <param name="filter">筛选条件。表达式示例：Builders&lt;T&gt;.Filter.Eq(string key, object value)。key区分大小写。</param>
+            <param name="update">将要更新的内容。表达式示例：Builders&lt;T&gt;.Update.Set(string key, object value)。</param>
+            <returns></returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.IMongoDBAccess.Update``1(System.String,MongoDB.Driver.FilterDefinition{``0},System.Collections.Generic.IDictionary{System.String,System.Object})">
+            <summary>
+            更新数据。
+            </summary>
+            <typeparam name="T">数据的类型。</typeparam>
+            <param name="collectionName">MongoDB集合的名称。</param>
+            <param name="filter">筛选条件。表达式示例：Builders&lt;T&gt;.Filter.Eq(string key, object value)。key区分大小写。</param>
+            <param name="update">将要更新的内容。</param>
+            <returns></returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.IMongoDBAccess.Update``1(System.String,System.Collections.Generic.IDictionary{System.String,System.Object},MongoDB.Driver.UpdateDefinition{``0})">
+            <summary>
+            更新数据。
+            </summary>
+            <typeparam name="T">数据的类型。</typeparam>
+            <param name="collectionName">MongoDB集合的名称。</param>
+            <param name="filter">筛选条件。</param>
+            <param name="update">将要更新的内容。表达式示例：Builders&lt;T&gt;.Update.Set(string key, object value)。</param>
+            <returns></returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.IMongoDBAccess.Update``1(System.String,System.Collections.Generic.IDictionary{System.String,System.Object},System.Collections.Generic.IDictionary{System.String,System.Object})">
+            <summary>
+            更新数据。
+            </summary>
+            <typeparam name="T">数据的类型。</typeparam>
+            <param name="collectionName">MongoDB集合的名称。</param>
+            <param name="filter">筛选条件。</param>
+            <param name="update">将要更新的内容。</param>
+            <returns></returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.IMongoDBAccess.UpdateMany``1(System.String,System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},MongoDB.Driver.UpdateDefinition{``0})">
+            <summary>
+            更新多条数据。
+            </summary>
+            <typeparam name="T">数据的类型。</typeparam>
+            <param name="collectionName">MongoDB的集合名称。</param>
+            <param name="filter">筛选条件。表达式示例：p => p.UserId == "admin"。</param>
+            <param name="update">将要更新的内容。表达式示例：Builders&lt;T&gt;.Update.Set(string key, object value)。</param>
+            <returns></returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.IMongoDBAccess.UpdateMany``1(System.String,System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Collections.Generic.IDictionary{System.String,System.Object})">
+            <summary>
+            更新多条数据。
+            </summary>
+            <typeparam name="T">数据的类型。</typeparam>
+            <param name="collectionName">MongoDB的集合名称。</param>
+            <param name="filter">筛选条件。表达式示例：p => p.UserId == "admin"。</param>
+            <param name="update">将要更新的内容。</param>
+            <returns></returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.IMongoDBAccess.UpdateMany``1(System.String,MongoDB.Driver.FilterDefinition{``0},MongoDB.Driver.UpdateDefinition{``0})">
+            <summary>
+            更新多条数据。
+            </summary>
+            <typeparam name="T">数据的类型。</typeparam>
+            <param name="collectionName">MongoDB的集合名称。</param>
+            <param name="filter">筛选条件。表达式示例：Builders&lt;T&gt;.Filter.Eq(string key, object value)。key区分大小写。</param>
+            <param name="update">将要更新的内容。表达式示例：Builders&lt;T&gt;.Update.Set(string key, object value)。</param>
+            <returns></returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.IMongoDBAccess.UpdateMany``1(System.String,MongoDB.Driver.FilterDefinition{``0},System.Collections.Generic.IDictionary{System.String,System.Object})">
+            <summary>
+            更新多条数据。
+            </summary>
+            <typeparam name="T">数据的类型。</typeparam>
+            <param name="collectionName">MongoDB的集合名称。</param>
+            <param name="filter">筛选条件。表达式示例：Builders&lt;T&gt;.Filter.Eq(string key, object value)。key区分大小写。</param>
+            <param name="update">将要更新的内容。</param>
+            <returns></returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.IMongoDBAccess.UpdateMany``1(System.String,System.Collections.Generic.IDictionary{System.String,System.Object},MongoDB.Driver.UpdateDefinition{``0})">
+            <summary>
+            更新多条数据。
+            </summary>
+            <typeparam name="T">数据的类型。</typeparam>
+            <param name="collectionName">MongoDB的集合名称。</param>
+            <param name="filter">筛选条件。</param>
+            <param name="update">将要更新的内容。表达式示例：Builders&lt;T&gt;.Update.Set(string key, object value)。</param>
+            <returns></returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.IMongoDBAccess.UpdateMany``1(System.String,System.Collections.Generic.IDictionary{System.String,System.Object},System.Collections.Generic.IDictionary{System.String,System.Object})">
+            <summary>
+            更新多条数据。
+            </summary>
+            <typeparam name="T">数据的类型。</typeparam>
+            <param name="collectionName">MongoDB的集合名称。</param>
+            <param name="filter">筛选条件。</param>
+            <param name="update">将要更新的内容。</param>
+            <returns></returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.IMongoDBAccess.Select``1(System.String,System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
+            <summary>
+            
+            </summary>
+            <typeparam name="T">数据的类型。</typeparam>
+            <param name="collectionName">MongoDB的集合名称。</param>
+            <param name="filter">筛选条件。表达式示例：p => p.UserId == "admin"。</param>
+            <returns></returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.IMongoDBAccess.Select``1(System.String,MongoDB.Driver.FilterDefinition{``0})">
+            <summary>
+            
+            </summary>
+            <typeparam name="T">数据的类型。</typeparam>
+            <param name="collectionName">MongoDB的集合名称。</param>
+            <param name="filter">筛选条件。表达式示例：Builders&lt;T&gt;.Filter.Eq(string key, object value)。key区分大小写。</param>
+            <returns></returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.IMongoDBAccess.Select``1(System.String,System.Collections.Generic.IDictionary{System.String,System.Object})">
+            <summary>
+            查询数据。
+            </summary>
+            <typeparam name="T">数据的类型。</typeparam>
+            <param name="collectionName">MongoDB的集合名称。</param>
+            <param name="filter">筛选条件。</param>
+            <returns></returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.IMongoDBAccess.SelectMany``1(System.String,System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
+            <summary>
+            查询多条数据。
+            </summary>
+            <typeparam name="T">数据的类型。</typeparam>
+            <param name="collectionName">MongoDB的集合名称。</param>
+            <param name="filter">筛选条件。表达式示例：p => p.UserId == "admin"。</param>
+            <returns></returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.IMongoDBAccess.SelectMany``1(System.String,MongoDB.Driver.FilterDefinition{``0})">
+            <summary>
+            查询多条数据。
+            </summary>
+            <typeparam name="T">数据的类型。</typeparam>
+            <param name="collectionName">MongoDB的集合名称。</param>
+            <param name="filter">筛选条件。表达式示例：Builders&lt;T&gt;.Filter.Eq(string key, object value)。key区分大小写。</param>
+            <returns></returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.IMongoDBAccess.SelectMany``1(System.String,System.Collections.Generic.IDictionary{System.String,System.Object})">
+            <summary>
+            查询多条数据。
+            </summary>
+            <typeparam name="T">数据的类型。</typeparam>
+            <param name="collectionName">MongoDB的集合名称。</param>
+            <param name="dictionary">筛选条件。</param>
+            <returns></returns>
+        </member>
+        <member name="T:CPJIT.Library.CPJ4net.DataBaseUtil.Impl.AbstractRedisPoolManger">
+            <summary>  
+            RedisOperatorBase类，是redis操作的基类，继承自IDisposable接口，主要用于释放内存  
+            </summary>  
+        </member>
+        <member name="F:CPJIT.Library.CPJ4net.DataBaseUtil.Impl.AbstractRedisPoolManger.pooledRedisClientManager">
+            <summary>
+            Redis客户端连接池管理器
+            </summary>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.Impl.AbstractRedisPoolManger.#ctor(System.String[],System.String[])">
+            <summary>
+            使用指定的参数创建实例。
+            </summary>
+            <param name="readWriteHosts">可读写的Redis主机地址。</param>
+            <param name="readOnlyHosts">只读的Redis主机地址。</param>
+            <exception cref="T:System.ArgumentException">Redis主机地址不合法时。</exception>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.Impl.AbstractRedisPoolManger.ValidateHosts(System.String[])">
+            <summary>
+            解析Redis主机地址。
+            </summary>
+            <param name="hosts">Redis主机地址。</param>
+            <returns></returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.Impl.AbstractRedisPoolManger.Dispose">
+            <summary>
+            释放资源
+            </summary>
+        </member>
+        <member name="T:CPJIT.Library.CPJ4net.DataBaseUtil.Impl.MongoDBAccess">
+            <summary>
+            提供MongoDB的数据库交互工具。
+            </summary>
+        </member>
+        <member name="F:CPJIT.Library.CPJ4net.DataBaseUtil.Impl.MongoDBAccess.dataBase">
+            <summary>
+            表示MongoDB中的一个数据库对象。
+            </summary>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.Impl.MongoDBAccess.#ctor(System.String[],System.String)">
+            <summary>
+            使用指定的参数创建实例。
+            </summary>
+            <param name="ipports">MongoDB服务主机地址。</param>
+            <param name="dbName">数据库名称。区分大小写。</param>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.Impl.MongoDBAccess.#ctor(System.String[],System.String,System.Int32)">
+            <summary>
+            使用指定的参数创建实例。
+            </summary>
+            <param name="ipports">MongoDB服务主机地址。</param>
+            <param name="dbName">数据库名称。区分大小写。</param>
+            <param name="connectTimeout">连接服务的超时时长。单位：秒。</param>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.Impl.MongoDBAccess.Insert``1(System.String,``0)">
+            <summary>
+            新增一条数据。
+            </summary>
+            <typeparam name="T">数据类型。</typeparam>
+            <param name="collectionName">MongoDB的集合名称。</param>
+            <param name="entity">数据实体对象。</param>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.Impl.MongoDBAccess.InsertMany``1(System.String,System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            新增多条数据。
+            </summary>
+            <typeparam name="T">数据类型。</typeparam>
+            <param name="collectionName">MongoDB的集合名称。</param>
+            <param name="entities">数据实体对象。</param>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.Impl.MongoDBAccess.Delete``1(System.String,System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
+            <summary>
+            删除一条数据。
+            </summary>
+            <typeparam name="T">数据类型。</typeparam>
+            <param name="collectionName">MongoDB的集合名称。</param>
+            <param name="filter">筛选条件。表达式示例：p => p.UserId == "admin"。</param>
+            <returns></returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.Impl.MongoDBAccess.Delete``1(System.String,MongoDB.Driver.FilterDefinition{``0})">
+            <summary>
+            删除一条数据。
+            </summary>
+            <typeparam name="T">数据类型。</typeparam>
+            <param name="collectionName">MongoDB的集合名称。</param>
+            <param name="filter">筛选条件。表达式示例：Builders&lt;T&gt;.Filter.Eq(string key, object value)。key区分大小写。</param>
+            <returns></returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.Impl.MongoDBAccess.Delete``1(System.String,System.Collections.Generic.IDictionary{System.String,System.Object})">
+            <summary>
+            删除一条数据。
+            </summary>
+            <typeparam name="T">数据类型。</typeparam>
+            <param name="collectionName">MongoDB的集合名称。</param>
+            <param name="filter">筛选条件。</param>
+            <returns></returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.Impl.MongoDBAccess.DeleteMany``1(System.String,System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
+            <summary>
+            删除多条数据。
+            </summary>
+            <typeparam name="T">数据类型。</typeparam>
+            <param name="collectionName">MongoDB的集合名称。</param>
+            <param name="filter">筛选条件。表达式示例：p => p.UserId == "admin"。</param>
+            <returns></returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.Impl.MongoDBAccess.DeleteMany``1(System.String,MongoDB.Driver.FilterDefinition{``0})">
+            <summary>
+            删除多条数据。
+            </summary>
+            <typeparam name="T">数据类型。</typeparam>
+            <param name="collectionName">MongoDB的集合名称。</param>
+            <param name="filter">筛选条件。表达式示例：Builders&lt;T&gt;.Filter.Eq(string key, object value)。key区分大小写。</param>
+            <returns></returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.Impl.MongoDBAccess.DeleteMany``1(System.String,System.Collections.Generic.IDictionary{System.String,System.Object})">
+            <summary>
+            删除多条数据。
+            </summary>
+            <typeparam name="T">数据类型。</typeparam>
+            <param name="collectionName">MongoDB的集合名称。</param>
+            <param name="filter">筛选条件。</param>
+            <returns></returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.Impl.MongoDBAccess.Update``1(System.String,System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},MongoDB.Driver.UpdateDefinition{``0})">
+            <summary>
+            更新数据。
+            </summary>
+            <typeparam name="T">数据的类型。</typeparam>
+            <param name="collectionName">MongoDB集合的名称。</param>
+            <param name="filter">筛选条件。表达式示例：p => p.UserId == "admin"。</param>
+            <param name="update">将要更新的内容。表达式示例：Builders&lt;T&gt;.Update.Set(string key, object value)。</param>
+            <returns></returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.Impl.MongoDBAccess.Update``1(System.String,System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Collections.Generic.IDictionary{System.String,System.Object})">
+            <summary>
+            更新数据。
+            </summary>
+            <typeparam name="T">数据的类型。</typeparam>
+            <param name="collectionName">MongoDB集合的名称。</param>
+            <param name="filter">筛选条件。表达式示例：p => p.UserId == "admin"。</param>
+            <param name="update">将要更新的内容。</param>
+            <returns></returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.Impl.MongoDBAccess.Update``1(System.String,MongoDB.Driver.FilterDefinition{``0},MongoDB.Driver.UpdateDefinition{``0})">
+            <summary>
+            更新数据。
+            </summary>
+            <typeparam name="T">数据的类型。</typeparam>
+            <param name="collectionName">MongoDB集合的名称。</param>
+            <param name="filter">筛选条件。表达式示例：Builders&lt;T&gt;.Filter.Eq(string key, object value)。key区分大小写。</param>
+            <param name="update">将要更新的内容。表达式示例：Builders&lt;T&gt;.Update.Set(string key, object value)。</param>
+            <returns></returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.Impl.MongoDBAccess.Update``1(System.String,MongoDB.Driver.FilterDefinition{``0},System.Collections.Generic.IDictionary{System.String,System.Object})">
+            <summary>
+            更新数据。
+            </summary>
+            <typeparam name="T">数据的类型。</typeparam>
+            <param name="collectionName">MongoDB集合的名称。</param>
+            <param name="filter">筛选条件。表达式示例：Builders&lt;T&gt;.Filter.Eq(string key, object value)。key区分大小写。</param>
+            <param name="update">将要更新的内容。</param>
+            <returns></returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.Impl.MongoDBAccess.Update``1(System.String,System.Collections.Generic.IDictionary{System.String,System.Object},MongoDB.Driver.UpdateDefinition{``0})">
+            <summary>
+            更新数据。
+            </summary>
+            <typeparam name="T">数据的类型。</typeparam>
+            <param name="collectionName">MongoDB集合的名称。</param>
+            <param name="filter">筛选条件。</param>
+            <param name="update">将要更新的内容。表达式示例：Builders&lt;T&gt;.Update.Set(string key, object value)。</param>
+            <returns></returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.Impl.MongoDBAccess.Update``1(System.String,System.Collections.Generic.IDictionary{System.String,System.Object},System.Collections.Generic.IDictionary{System.String,System.Object})">
+            <summary>
+            更新数据。
+            </summary>
+            <typeparam name="T">数据的类型。</typeparam>
+            <param name="collectionName">MongoDB集合的名称。</param>
+            <param name="filter">筛选条件。</param>
+            <param name="update">将要更新的内容。</param>
+            <returns></returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.Impl.MongoDBAccess.UpdateMany``1(System.String,System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},MongoDB.Driver.UpdateDefinition{``0})">
+            <summary>
+            更新多条数据。
+            </summary>
+            <typeparam name="T">数据的类型。</typeparam>
+            <param name="collectionName">MongoDB的集合名称。</param>
+            <param name="filter">筛选条件。表达式示例：p => p.UserId == "admin"。</param>
+            <param name="update">将要更新的内容。表达式示例：Builders&lt;T&gt;.Update.Set(string key, object value)。</param>
+            <returns></returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.Impl.MongoDBAccess.UpdateMany``1(System.String,System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Collections.Generic.IDictionary{System.String,System.Object})">
+            <summary>
+            更新多条数据。
+            </summary>
+            <typeparam name="T">数据的类型。</typeparam>
+            <param name="collectionName">MongoDB的集合名称。</param>
+            <param name="filter">筛选条件。表达式示例：p => p.UserId == "admin"。</param>
+            <param name="update">将要更新的内容。</param>
+            <returns></returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.Impl.MongoDBAccess.UpdateMany``1(System.String,MongoDB.Driver.FilterDefinition{``0},MongoDB.Driver.UpdateDefinition{``0})">
+            <summary>
+            更新多条数据。
+            </summary>
+            <typeparam name="T">数据的类型。</typeparam>
+            <param name="collectionName">MongoDB的集合名称。</param>
+            <param name="filter">筛选条件。表达式示例：Builders&lt;T&gt;.Filter.Eq(string key, object value)。key区分大小写。</param>
+            <param name="update">将要更新的内容。表达式示例：Builders&lt;T&gt;.Update.Set(string key, object value)。</param>
+            <returns></returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.Impl.MongoDBAccess.UpdateMany``1(System.String,MongoDB.Driver.FilterDefinition{``0},System.Collections.Generic.IDictionary{System.String,System.Object})">
+            <summary>
+            更新多条数据。
+            </summary>
+            <typeparam name="T">数据的类型。</typeparam>
+            <param name="collectionName">MongoDB的集合名称。</param>
+            <param name="filter">筛选条件。表达式示例：Builders&lt;T&gt;.Filter.Eq(string key, object value)。key区分大小写。</param>
+            <param name="update">将要更新的内容。</param>
+            <returns></returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.Impl.MongoDBAccess.UpdateMany``1(System.String,System.Collections.Generic.IDictionary{System.String,System.Object},MongoDB.Driver.UpdateDefinition{``0})">
+            <summary>
+            更新多条数据。
+            </summary>
+            <typeparam name="T">数据的类型。</typeparam>
+            <param name="collectionName">MongoDB的集合名称。</param>
+            <param name="filter">筛选条件。</param>
+            <param name="update">将要更新的内容。表达式示例：Builders&lt;T&gt;.Update.Set(string key, object value)。</param>
+            <returns></returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.Impl.MongoDBAccess.UpdateMany``1(System.String,System.Collections.Generic.IDictionary{System.String,System.Object},System.Collections.Generic.IDictionary{System.String,System.Object})">
+            <summary>
+            更新多条数据。
+            </summary>
+            <typeparam name="T">数据的类型。</typeparam>
+            <param name="collectionName">MongoDB的集合名称。</param>
+            <param name="filter">筛选条件。</param>
+            <param name="update">将要更新的内容。</param>
+            <returns></returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.Impl.MongoDBAccess.Select``1(System.String,System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
+            <summary>
+            
+            </summary>
+            <typeparam name="T">数据的类型。</typeparam>
+            <param name="collectionName">MongoDB的集合名称。</param>
+            <param name="filter">筛选条件。表达式示例：p => p.UserId == "admin"。</param>
+            <returns></returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.Impl.MongoDBAccess.Select``1(System.String,MongoDB.Driver.FilterDefinition{``0})">
+            <summary>
+            
+            </summary>
+            <typeparam name="T">数据的类型。</typeparam>
+            <param name="collectionName">MongoDB的集合名称。</param>
+            <param name="filter">筛选条件。表达式示例：Builders&lt;T&gt;.Filter.Eq(string key, object value)。key区分大小写。</param>
+            <returns></returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.Impl.MongoDBAccess.Select``1(System.String,System.Collections.Generic.IDictionary{System.String,System.Object})">
+            <summary>
+            查询数据。
+            </summary>
+            <typeparam name="T">数据的类型。</typeparam>
+            <param name="collectionName">MongoDB的集合名称。</param>
+            <param name="filter">筛选条件。</param>
+            <returns></returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.Impl.MongoDBAccess.SelectMany``1(System.String,System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
+            <summary>
+            查询多条数据。
+            </summary>
+            <typeparam name="T">数据的类型。</typeparam>
+            <param name="collectionName">MongoDB的集合名称。</param>
+            <param name="filter">筛选条件。表达式示例：p => p.UserId == "admin"。</param>
+            <returns></returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.Impl.MongoDBAccess.SelectMany``1(System.String,MongoDB.Driver.FilterDefinition{``0})">
+            <summary>
+            查询多条数据。
+            </summary>
+            <typeparam name="T">数据的类型。</typeparam>
+            <param name="collectionName">MongoDB的集合名称。</param>
+            <param name="filter">筛选条件。表达式示例：Builders&lt;T&gt;.Filter.Eq(string key, object value)。key区分大小写。</param>
+            <returns></returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.Impl.MongoDBAccess.SelectMany``1(System.String,System.Collections.Generic.IDictionary{System.String,System.Object})">
+            <summary>
+            查询多条数据。
+            </summary>
+            <typeparam name="T">数据的类型。</typeparam>
+            <param name="collectionName">MongoDB的集合名称。</param>
+            <param name="dictionary">筛选条件。</param>
+            <returns></returns>
+        </member>
+        <member name="T:CPJIT.Library.CPJ4net.DataBaseUtil.Impl.MsSqlDBAccess">
+            <summary>
+            MSSQL数据库访问工具
+            </summary>
+        </member>
+        <member name="F:CPJIT.Library.CPJ4net.DataBaseUtil.Impl.MsSqlDBAccess.conString">
+            <summary>
+            连接数据库的字符串
+            </summary>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.Impl.MsSqlDBAccess.#ctor(System.String,System.String,System.String,System.String)">
+            <summary>
+            与数据库交互（增删改查）
+            </summary>
+            <param name="datasource">数据库源</param>
+            <param name="database">数据库名称</param>
+            <param name="userId">用户名</param>
+            <param name="password">密码</param>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.Impl.MsSqlDBAccess.TestConnect">
+            <summary>
+            测试连接
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.Impl.MsSqlDBAccess.ExecuteNonQuery(System.String,System.Data.CommandType)">
+            <summary>
+            执行增、删、改的SQL语句或者存储过程，返回受影响的行数
+            </summary>
+            <param name="cmdText">执行的命令或者存储过程的名称</param>
+            <param name="cmdType">执行的命令的类型（SQL语句或者存储过程）</param>
+            <returns>受影响的行数</returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.Impl.MsSqlDBAccess.ExecuteNonQuery(System.String,System.Data.CommandType,System.Collections.Hashtable)">
+            <summary>
+            执行带参数的增、删、改的SQL语句或者存储过程，返回受影响的行数
+            </summary>
+            <param name="cmdText">执行的命令或者存储过程的名称</param>
+            <param name="cmdType">执行的命令的类型（SQL语句或者存储过程）</param>
+            <param name="paras">表示参数的键值对（键：参数名称；值：参数值）</param>
+            <returns>受影响的行数</returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.Impl.MsSqlDBAccess.ExecuteDateSet(System.String,System.Data.CommandType)">
+            <summary>
+            执行SQL查询语句或者存储过程，返回DataSet
+            </summary>
+            <param name="cmdText">执行的命令或者存储过程的名称</param>
+            <param name="cmdType">执行的命令的类型（SQL语句或者存储过程）</param>
+            <returns>返回DataSet</returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.Impl.MsSqlDBAccess.ExecuteDateSet(System.String,System.Data.CommandType,System.Collections.Hashtable)">
+            <summary>
+            执行带参数的SQL查询语句或者存储过程，返回DataSet
+            </summary>
+            <param name="cmdText">执行的命令或者存储过程的名称</param>
+            <param name="cmdType">执行的命令的类型（SQL语句或者存储过程）</param>
+            <param name="paras">表示参数的键值对（键：参数名称；值：参数值）</param>
+            <returns>返回DataSet</returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.Impl.MsSqlDBAccess.ExecuteDataReader(System.String,System.Data.CommandType)">
+            <summary>
+            执行SQL查询语句或者存储过程，返回SqlDatareader对象
+            </summary>
+            <param name="cmdText">执行的命令或者存储过程的名称</param>
+            <param name="cmdType">执行的命令的类型（SQL语句或者存储过程）</param>
+            <returns>返回SqlDatareader对象</returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.Impl.MsSqlDBAccess.ExecuteDataReader(System.String,System.Data.CommandType,System.Collections.Hashtable)">
+            <summary>
+            执行带参数的SQL查询语句或者存储过程，返回SqlDatareader对象
+            </summary>
+            <param name="cmdText">执行的命令或者存储过程的名称</param>
+            <param name="cmdType">执行的命令的类型（SQL语句或者存储过程）</param>
+            <param name="paras">表示参数的键值对（键：参数名称；值：参数值）</param>
+            <returns>返回SqlDatareader对象</returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.Impl.MsSqlDBAccess.ExecuteScalar(System.String,System.Data.CommandType)">
+            <summary>
+            执行查找字段的SQL查询语句或者存储过程，返回object类型的字段变量
+            </summary>
+            <param name="cmdText">执行的命令或者存储过程的名称</param>
+            <param name="cmdType">执行的命令的类型（SQL语句或者存储过程）</param>
+            <returns>返回object类型的字段变量</returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.Impl.MsSqlDBAccess.ExecuteScalar(System.String,System.Data.CommandType,System.Collections.Hashtable)">
+            <summary>
+            执行查找字段的SQL查询语句或者存储过程，返回object类型的字段变量
+            </summary>
+            <param name="cmdText">执行的命令或者存储过程的名称</param>
+            <param name="cmdType">执行的命令的类型（SQL语句或者存储过程）</param>
+            <param name="paras">表示参数的键值对（键：参数名称；值：参数值）</param>
+            <returns>返回object类型的字段变量</returns>
+        </member>
+        <member name="T:CPJIT.Library.CPJ4net.DataBaseUtil.Impl.MySqlDBAccess">
+            <summary>
+            MYSQL数据库访问工具
+            </summary>
+        </member>
+        <member name="F:CPJIT.Library.CPJ4net.DataBaseUtil.Impl.MySqlDBAccess.conString">
+            <summary>
+            连接数据库的字符串
+            </summary>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.Impl.MySqlDBAccess.#ctor(System.String,System.Int32,System.String,System.String,System.String)">
+            <summary>
+            与数据库交互（增删改查）
+            </summary>
+            <param name="datasource">数据源（IP地址）</param>
+            <param name="port">端口</param>
+            <param name="database">数据库名称</param>
+            <param name="userId">用户名</param>
+            <param name="password">密码</param>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.Impl.MySqlDBAccess.TestConnect">
+            <summary>
+            测试连接
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.Impl.MySqlDBAccess.ExecuteNonQuery(System.String,System.Data.CommandType)">
+            <summary>
+            执行增、删、改的SQL语句或者存储过程，返回受影响的行数
+            </summary>
+            <param name="cmdText">执行的命令或者存储过程的名称</param>
+            <param name="cmdType">执行的命令的类型（SQL语句或者存储过程）</param>
+            <returns>受影响的行数</returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.Impl.MySqlDBAccess.ExecuteNonQuery(System.String,System.Data.CommandType,System.Collections.Hashtable)">
+            <summary>
+            执行带参数的增、删、改的SQL语句或者存储过程，返回受影响的行数
+            </summary>
+            <param name="cmdText">执行的命令或者存储过程的名称</param>
+            <param name="cmdType">执行的命令的类型（SQL语句或者存储过程）</param>
+            <param name="paras">表示参数的键值对（键：参数名称；值：参数值）</param>
+            <returns>受影响的行数</returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.Impl.MySqlDBAccess.ExecuteDateSet(System.String,System.Data.CommandType)">
+            <summary>
+            执行SQL查询语句或者存储过程，返回DataSet
+            </summary>
+            <param name="cmdText">执行的命令或者存储过程的名称</param>
+            <param name="cmdType">执行的命令的类型（SQL语句或者存储过程）</param>
+            <returns>返回DataSet</returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.Impl.MySqlDBAccess.ExecuteDateSet(System.String,System.Data.CommandType,System.Collections.Hashtable)">
+            <summary>
+            执行带参数的SQL查询语句或者存储过程，返回DataSet
+            </summary>
+            <param name="cmdText">执行的命令或者存储过程的名称</param>
+            <param name="cmdType">执行的命令的类型（SQL语句或者存储过程）</param>
+            <param name="paras">表示参数的键值对（键：参数名称；值：参数值）</param>
+            <returns>返回DataSet</returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.Impl.MySqlDBAccess.ExecuteDataReader(System.String,System.Data.CommandType)">
+            <summary>
+            执行SQL查询语句或者存储过程，返回SqlDatareader对象
+            </summary>
+            <param name="cmdText">执行的命令或者存储过程的名称</param>
+            <param name="cmdType">执行的命令的类型（SQL语句或者存储过程）</param>
+            <returns>返回SqlDatareader对象</returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.Impl.MySqlDBAccess.ExecuteDataReader(System.String,System.Data.CommandType,System.Collections.Hashtable)">
+            <summary>
+            执行带参数的SQL查询语句或者存储过程，返回SqlDatareader对象
+            </summary>
+            <param name="cmdText">执行的命令或者存储过程的名称</param>
+            <param name="cmdType">执行的命令的类型（SQL语句或者存储过程）</param>
+            <param name="paras">表示参数的键值对（键：参数名称；值：参数值）</param>
+            <returns>返回SqlDatareader对象</returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.Impl.MySqlDBAccess.ExecuteScalar(System.String,System.Data.CommandType)">
+            <summary>
+            执行查找字段的SQL查询语句或者存储过程，返回object类型的字段变量
+            </summary>
+            <param name="cmdText">执行的命令或者存储过程的名称</param>
+            <param name="cmdType">执行的命令的类型（SQL语句或者存储过程）</param>
+            <returns>返回object类型的字段变量</returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.Impl.MySqlDBAccess.ExecuteScalar(System.String,System.Data.CommandType,System.Collections.Hashtable)">
+            <summary>
+            执行查找字段的SQL查询语句或者存储过程，返回object类型的字段变量
+            </summary>
+            <param name="cmdText">执行的命令或者存储过程的名称</param>
+            <param name="cmdType">执行的命令的类型（SQL语句或者存储过程）</param>
+            <param name="paras">表示参数的键值对（键：参数名称；值：参数值）</param>
+            <returns>返回object类型的字段变量</returns>
+        </member>
+        <member name="T:CPJIT.Library.CPJ4net.DataBaseUtil.Impl.OracleClientDBAccess">
+            <summary>
+            Oracle数据库访问工具（依赖Oracle客户端应用）
+            </summary>
+        </member>
+        <member name="F:CPJIT.Library.CPJ4net.DataBaseUtil.Impl.OracleClientDBAccess.conString">
+            <summary>
+            连接数据库的字符串
+            </summary>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.Impl.OracleClientDBAccess.#ctor(System.String,System.String,System.String)">
+            <summary>
+            与数据库交互（增删改查）
+            </summary>
+            <param name="serverName">服务名</param>
+            <param name="userId">用户名</param>
+            <param name="password">密码</param>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.Impl.OracleClientDBAccess.TestConnect">
+            <summary>
+            测试连接
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.Impl.OracleClientDBAccess.ExecuteNonQuery(System.String,System.Data.CommandType)">
+            <summary>
+            执行增、删、改的SQL语句或者存储过程，返回受影响的行数
+            </summary>
+            <param name="cmdText">执行的命令或者存储过程的名称</param>
+            <param name="cmdType">执行的命令的类型（SQL语句或者存储过程）</param>
+            <returns>受影响的行数</returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.Impl.OracleClientDBAccess.ExecuteNonQuery(System.String,System.Data.CommandType,System.Collections.Hashtable)">
+            <summary>
+            执行带参数的增、删、改的SQL语句或者存储过程，返回受影响的行数
+            </summary>
+            <param name="cmdText">执行的命令或者存储过程的名称</param>
+            <param name="cmdType">执行的命令的类型（SQL语句或者存储过程）</param>
+            <param name="paras">表示参数的键值对（键：参数名称；值：参数值）</param>
+            <returns>受影响的行数</returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.Impl.OracleClientDBAccess.ExecuteDateSet(System.String,System.Data.CommandType)">
+            <summary>
+            执行SQL查询语句或者存储过程，返回DataSet
+            </summary>
+            <param name="cmdText">执行的命令或者存储过程的名称</param>
+            <param name="cmdType">执行的命令的类型（SQL语句或者存储过程）</param>
+            <returns>返回DataSet</returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.Impl.OracleClientDBAccess.ExecuteDateSet(System.String,System.Data.CommandType,System.Collections.Hashtable)">
+            <summary>
+            执行带参数的SQL查询语句或者存储过程，返回DataSet
+            </summary>
+            <param name="cmdText">执行的命令或者存储过程的名称</param>
+            <param name="cmdType">执行的命令的类型（SQL语句或者存储过程）</param>
+            <param name="paras">表示参数的键值对（键：参数名称；值：参数值）</param>
+            <returns>返回DataSet</returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.Impl.OracleClientDBAccess.ExecuteDataReader(System.String,System.Data.CommandType)">
+            <summary>
+            执行SQL查询语句或者存储过程，返回SqlDatareader对象
+            </summary>
+            <param name="cmdText">执行的命令或者存储过程的名称</param>
+            <param name="cmdType">执行的命令的类型（SQL语句或者存储过程）</param>
+            <returns>返回SqlDatareader对象</returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.Impl.OracleClientDBAccess.ExecuteDataReader(System.String,System.Data.CommandType,System.Collections.Hashtable)">
+            <summary>
+            执行带参数的SQL查询语句或者存储过程，返回SqlDatareader对象
+            </summary>
+            <param name="cmdText">执行的命令或者存储过程的名称</param>
+            <param name="cmdType">执行的命令的类型（SQL语句或者存储过程）</param>
+            <param name="paras">表示参数的键值对（键：参数名称；值：参数值）</param>
+            <returns>返回SqlDatareader对象</returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.Impl.OracleClientDBAccess.ExecuteScalar(System.String,System.Data.CommandType)">
+            <summary>
+            执行查找字段的SQL查询语句或者存储过程，返回object类型的字段变量
+            </summary>
+            <param name="cmdText">执行的命令或者存储过程的名称</param>
+            <param name="cmdType">执行的命令的类型（SQL语句或者存储过程）</param>
+            <returns>返回object类型的字段变量</returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.Impl.OracleClientDBAccess.ExecuteScalar(System.String,System.Data.CommandType,System.Collections.Hashtable)">
+            <summary>
+            执行查找字段的SQL查询语句或者存储过程，返回object类型的字段变量
+            </summary>
+            <param name="cmdText">执行的命令或者存储过程的名称</param>
+            <param name="cmdType">执行的命令的类型（SQL语句或者存储过程）</param>
+            <param name="paras">表示参数的键值对（键：参数名称；值：参数值）</param>
+            <returns>返回object类型的字段变量</returns>
+        </member>
+        <member name="T:CPJIT.Library.CPJ4net.DataBaseUtil.Impl.OracleDBAccess">
+            <summary>
+            Oracle数据库访问工具（不依赖Oracle客户端应用）
+            </summary>
+        </member>
+        <member name="F:CPJIT.Library.CPJ4net.DataBaseUtil.Impl.OracleDBAccess.conString">
+            <summary>
+            连接数据库的字符串
+            </summary>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.Impl.OracleDBAccess.#ctor(System.String,System.Int32,System.String,System.String,System.String)">
+            <summary>
+            构造方法
+            </summary>
+            <param name="ip">ip地址</param>
+            <param name="port">端口</param>
+            <param name="serviceName">数据库服务名</param>
+            <param name="userId">用户名</param>
+            <param name="password">密码</param>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.Impl.OracleDBAccess.TestConnect">
+            <summary>
+            测试连接
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.Impl.OracleDBAccess.ExecuteNonQuery(System.String,System.Data.CommandType)">
+            <summary>
+            执行增、删、改的SQL语句或者存储过程，返回受影响的行数
+            </summary>
+            <param name="cmdText">执行的命令或者存储过程的名称</param>
+            <param name="cmdType">执行的命令的类型（SQL语句或者存储过程）</param>
+            <returns>受影响的行数</returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.Impl.OracleDBAccess.ExecuteNonQuery(System.String,System.Data.CommandType,System.Collections.Hashtable)">
+            <summary>
+            执行带参数的增、删、改的SQL语句或者存储过程，返回受影响的行数
+            </summary>
+            <param name="cmdText">执行的命令或者存储过程的名称</param>
+            <param name="cmdType">执行的命令的类型（SQL语句或者存储过程）</param>
+            <param name="paras">表示参数的键值对（键：参数名称；值：参数值）</param>
+            <returns>受影响的行数</returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.Impl.OracleDBAccess.ExecuteDateSet(System.String,System.Data.CommandType)">
+            <summary>
+            执行SQL查询语句或者存储过程，返回DataSet
+            </summary>
+            <param name="cmdText">执行的命令或者存储过程的名称</param>
+            <param name="cmdType">执行的命令的类型（SQL语句或者存储过程）</param>
+            <returns>返回DataSet</returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.Impl.OracleDBAccess.ExecuteDateSet(System.String,System.Data.CommandType,System.Collections.Hashtable)">
+            <summary>
+            执行带参数的SQL查询语句或者存储过程，返回DataSet
+            </summary>
+            <param name="cmdText">执行的命令或者存储过程的名称</param>
+            <param name="cmdType">执行的命令的类型（SQL语句或者存储过程）</param>
+            <param name="paras">表示参数的键值对（键：参数名称；值：参数值）</param>
+            <returns>返回DataSet</returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.Impl.OracleDBAccess.ExecuteDataReader(System.String,System.Data.CommandType)">
+            <summary>
+            执行SQL查询语句或者存储过程，返回OracleDatareader对象
+            </summary>
+            <param name="cmdText">执行的命令或者存储过程的名称</param>
+            <param name="cmdType">执行的命令的类型（SQL语句或者存储过程）</param>
+            <returns>返回OracleDatareader对象</returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.Impl.OracleDBAccess.ExecuteDataReader(System.String,System.Data.CommandType,System.Collections.Hashtable)">
+            <summary>
+            执行带参数的SQL查询语句或者存储过程，返回OracleDatareader对象
+            </summary>
+            <param name="cmdText">执行的命令或者存储过程的名称</param>
+            <param name="cmdType">执行的命令的类型（SQL语句或者存储过程）</param>
+            <param name="paras">表示参数的键值对（键：参数名称；值：参数值）</param>
+            <returns>返回OracleDatareader对象</returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.Impl.OracleDBAccess.ExecuteScalar(System.String,System.Data.CommandType)">
+            <summary>
+            执行查找字段的SQL查询语句或者存储过程，返回object类型的字段变量
+            </summary>
+            <param name="cmdText">执行的命令或者存储过程的名称</param>
+            <param name="cmdType">执行的命令的类型（SQL语句或者存储过程）</param>
+            <returns>返回object类型的字段变量</returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.Impl.OracleDBAccess.ExecuteScalar(System.String,System.Data.CommandType,System.Collections.Hashtable)">
+            <summary>
+            执行查找字段的SQL查询语句或者存储过程，返回object类型的字段变量
+            </summary>
+            <param name="cmdText">执行的命令或者存储过程的名称</param>
+            <param name="cmdType">执行的命令的类型（SQL语句或者存储过程）</param>
+            <param name="paras">表示参数的键值对（键：参数名称；值：参数值）</param>
+            <returns>返回object类型的字段变量</returns>
+        </member>
+        <member name="T:CPJIT.Library.CPJ4net.DataBaseUtil.Impl.RedisDBAccess">
+            <summary>
+            提供Redis访问工具。
+            </summary>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.Impl.RedisDBAccess.#ctor(System.String[],System.String[])">
+            <summary>
+            使用指定的参数创建实例。主机地址示例，“127.0.0.1:6379”，或者带有身份校验的“123456@127.0.0.1:6379”。
+            </summary>
+            <param name="readWriteHosts">可读写Redis主机的地址。</param>
+            <param name="readOnlyHosts">只读Redis主机的地址。</param>
+            <exception cref="T:System.ArgumentException">Redis主机地址不合法时。</exception>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.Impl.RedisDBAccess.Add``1(System.String,``0,System.TimeSpan)">
+            <summary>
+            仅在缓存为空时在指定的缓存密钥中添加一个新项到缓存中。
+            </summary>
+            <typeparam name="T">添加的值的数据类型。</typeparam>
+            <param name="key">键。</param>
+            <param name="value">值。</param>
+            <param name="expiresIn">数据的生命周期。</param>
+            <returns></returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.Impl.RedisDBAccess.Add``1(System.String,``0,System.DateTime)">
+            <summary>
+            仅在缓存为空时在指定的缓存密钥中添加一个新项到缓存中。
+            </summary>
+            <typeparam name="T">添加的值的数据类型。</typeparam>
+            <param name="key">键。</param>
+            <param name="value">值。</param>
+            <param name="expiresAt">数据的生命周期。</param>
+            <returns></returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.Impl.RedisDBAccess.Add``1(System.String,``0)">
+            <summary>
+            仅在缓存为空时在指定的缓存密钥中添加一个新项到缓存中。
+            </summary>
+            <typeparam name="T">添加的值的数据类型。</typeparam>
+            <param name="key">键。</param>
+            <param name="value">值。</param> 
+            <returns></returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.Impl.RedisDBAccess.Increment(System.String,System.UInt32)">
+            <summary>
+            按给定的数值递增指定键的值。操作是原子的, 并在服务器上发生。 一个不存在的键值从0开始。
+            </summary>
+            <param name="key">键</param>
+            <param name="amount">递增的数量</param>
+            <returns></returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.Impl.RedisDBAccess.Decrement(System.String,System.UInt32)">
+            <summary>
+            按给定的数值递减指定键的值。操作是原子的, 并在服务器上发生。 一个不存在的键值从0开始。
+            </summary>
+            <param name="key">键</param>
+            <param name="amount">递减的数量</param>
+            <returns></returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.Impl.RedisDBAccess.FlushAll">
+            <summary>
+            使高速缓存中的所有数据作废。
+            </summary>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.Impl.RedisDBAccess.Get``1(System.String)">
+            <summary>
+            获取指定键的值。
+            </summary>
+            <typeparam name="T">值的数据类型。</typeparam>
+            <param name="key">键。</param>
+            <returns></returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.Impl.RedisDBAccess.GetAll``1(System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            获取多个键的值。
+            </summary>
+            <typeparam name="T">值的数据类型。</typeparam>
+            <param name="keys">表示多个键的集合。</param>
+            <returns></returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.Impl.RedisDBAccess.Remove(System.String)">
+            <summary>
+            移除一个键/值。
+            </summary>
+            <param name="key">键。</param>
+            <returns></returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.Impl.RedisDBAccess.RemoveAll(System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            移除多个键/值。
+            </summary>
+            <param name="keys">表示多个键的集合。</param>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.Impl.RedisDBAccess.Replace``1(System.String,``0,System.TimeSpan)">
+            <summary>
+            仅当某个项存在于该位置时，才将该项目替换为指定的cachekey。
+            </summary>
+            <typeparam name="T">值的数据类型。</typeparam>
+            <param name="key">键。</param>
+            <param name="value">值。</param>
+            <param name="expiresIn">数据的生命周期。</param>
+            <returns></returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.Impl.RedisDBAccess.Replace``1(System.String,``0,System.DateTime)">
+            <summary>
+            仅当某个项存在于该位置时，才将该项目替换为指定的cachekey。
+            </summary>
+            <typeparam name="T">值的数据类型。</typeparam>
+            <param name="key">键。</param>
+            <param name="value">值。</param>
+            <param name="expiresAt">数据的生命周期。</param>
+            <returns></returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.Impl.RedisDBAccess.Replace``1(System.String,``0)">
+            <summary>
+            仅当某个项存在于该位置时，才将该项目替换为指定的cachekey。
+            </summary>
+            <typeparam name="T">值的数据类型。</typeparam>
+            <param name="key">键。</param>
+            <param name="value">值。</param>
+            <returns></returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.Impl.RedisDBAccess.Set``1(System.String,``0,System.TimeSpan)">
+            <summary>
+            在指定的缓存键中设置一个项目，不管它是否已经存在。
+            </summary>
+            <typeparam name="T">值的数据类型。</typeparam>
+            <param name="key">键。</param>
+            <param name="value">值。</param>
+            <param name="expiresIn">数据的生命周期。</param>
+            <returns></returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.Impl.RedisDBAccess.Set``1(System.String,``0,System.DateTime)">
+            <summary>
+            在指定的缓存键中设置一个项目，不管它是否已经存在。
+            </summary>
+            <typeparam name="T">值的数据类型。</typeparam>
+            <param name="key">键。</param>
+            <param name="value">值。</param>
+            <param name="expiresAt">数据的生命周期。</param>
+            <returns></returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.Impl.RedisDBAccess.Set``1(System.String,``0)">
+            <summary>
+            在指定的缓存键中设置一个项目，不管它是否已经存在。
+            </summary>
+            <typeparam name="T">值的数据类型。</typeparam>
+            <param name="key">键。</param>
+            <param name="value">值。</param>
+            <returns></returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.Impl.RedisDBAccess.SetAll``1(System.Collections.Generic.IDictionary{System.String,``0})">
+            <summary>
+            将多个值设置到缓存中。
+            </summary>
+            <typeparam name="T">值得数据类型。</typeparam>
+            <param name="values">以“键-值”形式表示的多个数据的集合。</param>
+        </member>
+        <member name="T:CPJIT.Library.CPJ4net.DataBaseUtil.Impl.SQLiteDBAccess">
+            <summary>
+            SQLite数据库访问工具
+            </summary>
+        </member>
+        <member name="F:CPJIT.Library.CPJ4net.DataBaseUtil.Impl.SQLiteDBAccess.conString">
+            <summary>
+            SQLIite数据库辅助工具类
+            </summary>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.Impl.SQLiteDBAccess.#ctor(System.String)">
+            <summary>
+            构造方法
+            </summary>
+            <param name="dbPath">数据库文件（可读取的相对路径或者完整的路径）</param>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.Impl.SQLiteDBAccess.TestConnect">
+            <summary>
+            测试连接
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.Impl.SQLiteDBAccess.ExecuteNonQuery(System.String,System.Data.CommandType)">
+            <summary>
+            执行增、删、改的SQL语句或者存储过程，返回受影响的行数
+            </summary>
+            <param name="cmdText">执行的命令或者存储过程的名称</param>
+            <param name="cmdType">执行的命令的类型（SQL语句或者存储过程）</param>
+            <returns>受影响的行数</returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.Impl.SQLiteDBAccess.ExecuteNonQuery(System.String,System.Data.CommandType,System.Collections.Hashtable)">
+            <summary>
+            执行带参数的增、删、改的SQL语句或者存储过程，返回受影响的行数
+            </summary>
+            <param name="cmdText">执行的命令或者存储过程的名称</param>
+            <param name="cmdType">执行的命令的类型（SQL语句或者存储过程）</param>
+            <param name="paras">表示参数的键值对（键：参数名称；值：参数值）</param>
+            <returns>受影响的行数</returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.Impl.SQLiteDBAccess.ExecuteDateSet(System.String,System.Data.CommandType)">
+            <summary>
+            执行SQL查询语句或者存储过程，返回DataSet
+            </summary>
+            <param name="cmdText">执行的命令或者存储过程的名称</param>
+            <param name="cmdType">执行的命令的类型（SQL语句或者存储过程）</param>
+            <returns>返回DataSet</returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.Impl.SQLiteDBAccess.ExecuteDateSet(System.String,System.Data.CommandType,System.Collections.Hashtable)">
+            <summary>
+            执行带参数的SQL查询语句或者存储过程，返回DataSet
+            </summary>
+            <param name="cmdText">执行的命令或者存储过程的名称</param>
+            <param name="cmdType">执行的命令的类型（SQL语句或者存储过程）</param>
+            <param name="paras">表示参数的键值对（键：参数名称；值：参数值）</param>
+            <returns>返回DataSet</returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.Impl.SQLiteDBAccess.ExecuteDataReader(System.String,System.Data.CommandType)">
+            <summary>
+            执行SQL查询语句或者存储过程，返回SQLiteDatareader对象
+            </summary>
+            <param name="cmdText">执行的命令或者存储过程的名称</param>
+            <param name="cmdType">执行的命令的类型（SQL语句或者存储过程）</param>
+            <returns>返回SQLiteDatareader对象</returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.Impl.SQLiteDBAccess.ExecuteDataReader(System.String,System.Data.CommandType,System.Collections.Hashtable)">
+            <summary>
+            执行带参数的SQL查询语句或者存储过程，返回SQLiteDatareader对象
+            </summary>
+            <param name="cmdText">执行的命令或者存储过程的名称</param>
+            <param name="cmdType">执行的命令的类型（SQL语句或者存储过程）</param>
+            <param name="paras">表示参数的键值对（键：参数名称；值：参数值）</param>
+            <returns>返回SQLiteDatareader对象</returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.Impl.SQLiteDBAccess.ExecuteScalar(System.String,System.Data.CommandType)">
+            <summary>
+            执行查找字段的SQL查询语句或者存储过程，返回object类型的字段变量
+            </summary>
+            <param name="cmdText">执行的命令或者存储过程的名称</param>
+            <param name="cmdType">执行的命令的类型（SQL语句或者存储过程）</param>
+            <returns>返回object类型的字段变量</returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.Impl.SQLiteDBAccess.ExecuteScalar(System.String,System.Data.CommandType,System.Collections.Hashtable)">
+            <summary>
+            执行查找字段的SQL查询语句或者存储过程，返回object类型的字段变量
+            </summary>
+            <param name="cmdText">执行的命令或者存储过程的名称</param>
+            <param name="cmdType">执行的命令的类型（SQL语句或者存储过程）</param>
+            <param name="paras">表示参数的键值对（键：参数名称；值：参数值）</param>
+            <returns>返回object类型的字段变量</returns>
+        </member>
+        <member name="T:CPJIT.Library.CPJ4net.DataBaseUtil.IRedisDBAccess">
+            <summary>
+            提供Redis客户端交互接口。
+            </summary>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.IRedisDBAccess.Add``1(System.String,``0)">
+            <summary>
+            仅在缓存为空时在指定的缓存密钥中添加一个新项到缓存中。
+            </summary>
+            <typeparam name="T">添加的值的数据类型。</typeparam>
+            <param name="key">键。</param>
+            <param name="value">值。</param>
+            <returns></returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.IRedisDBAccess.Add``1(System.String,``0,System.DateTime)">
+            <summary>
+            仅在缓存为空时在指定的缓存密钥中添加一个新项到缓存中。
+            </summary>
+            <typeparam name="T">添加的值的数据类型。</typeparam>
+            <param name="key">键。</param>
+            <param name="value">值。</param>
+            <param name="expiresAt">数据的生命周期。</param>
+            <returns></returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.IRedisDBAccess.Add``1(System.String,``0,System.TimeSpan)">
+            <summary>
+            仅在缓存为空时在指定的缓存密钥中添加一个新项到缓存中。
+            </summary>
+            <typeparam name="T">添加的值的数据类型。</typeparam>
+            <param name="key">键。</param>
+            <param name="value">值。</param> 
+            <param name="expiresIn">数据的生命周期。</param>
+            <returns></returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.IRedisDBAccess.Increment(System.String,System.UInt32)">
+            <summary>
+            按给定的数值递增指定键的值。操作是原子的, 并在服务器上发生。 一个不存在的键值从0开始。
+            </summary>
+            <param name="key">键</param>
+            <param name="amount">递增的数量</param>
+            <returns></returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.IRedisDBAccess.Decrement(System.String,System.UInt32)">
+            <summary>
+            按给定的数值递减指定键的值。操作是原子的, 并在服务器上发生。 一个不存在的键值从0开始。
+            </summary>
+            <param name="key">键</param>
+            <param name="amount">递减的数量</param>
+            <returns></returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.IRedisDBAccess.FlushAll">
+            <summary>
+            使高速缓存中的所有数据作废。
+            </summary>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.IRedisDBAccess.Get``1(System.String)">
+            <summary>
+            获取指定键的值。
+            </summary>
+            <typeparam name="T">值的数据类型。</typeparam>
+            <param name="key">键。</param>
+            <returns></returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.IRedisDBAccess.GetAll``1(System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            获取多个键的值。
+            </summary>
+            <typeparam name="T">值的数据类型。</typeparam>
+            <param name="keys">表示多个键的集合。</param>
+            <returns></returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.IRedisDBAccess.Remove(System.String)">
+            <summary>
+            移除一个键/值。
+            </summary>
+            <param name="key">键。</param>
+            <returns>如果移除成功，则返回true。如果指定键在Redis中不存在或移除失败，则返回false。</returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.IRedisDBAccess.RemoveAll(System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            移除多个键/值。
+            </summary>
+            <param name="keys">表示多个键的集合。</param>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.IRedisDBAccess.Replace``1(System.String,``0)">
+            <summary>
+            仅当某个项存在于该位置时，才将该项目替换为指定的cachekey。
+            </summary>
+            <typeparam name="T">值的数据类型。</typeparam>
+            <param name="key">键。</param>
+            <param name="value">值。</param>
+            <returns></returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.IRedisDBAccess.Replace``1(System.String,``0,System.DateTime)">
+            <summary>
+            仅当某个项存在于该位置时，才将该项目替换为指定的cachekey。
+            </summary>
+            <typeparam name="T">值的数据类型。</typeparam>
+            <param name="key">键。</param>
+            <param name="value">值。</param>
+            <param name="expiresAt">数据的生命周期。</param>
+            <returns></returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.IRedisDBAccess.Replace``1(System.String,``0,System.TimeSpan)">
+            <summary>
+            仅当某个项存在于该位置时，才将该项目替换为指定的cachekey。
+            </summary>
+            <typeparam name="T">值的数据类型。</typeparam>
+            <param name="key">键。</param>
+            <param name="value">值。</param>
+            <param name="expiresIn">数据的生命周期。</param>
+            <returns></returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.IRedisDBAccess.Set``1(System.String,``0)">
+            <summary>
+            在指定的缓存键中设置一个项目，不管它是否已经存在。
+            </summary>
+            <typeparam name="T">值的数据类型。</typeparam>
+            <param name="key">键。</param>
+            <param name="value">值。</param>
+            <returns></returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.IRedisDBAccess.Set``1(System.String,``0,System.DateTime)">
+            <summary>
+            在指定的缓存键中设置一个项目，不管它是否已经存在。
+            </summary>
+            <typeparam name="T">值的数据类型。</typeparam>
+            <param name="key">键。</param>
+            <param name="value">值。</param>
+            <param name="expiresAt">数据的生命周期。</param>
+            <returns></returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.IRedisDBAccess.Set``1(System.String,``0,System.TimeSpan)">
+            <summary>
+            在指定的缓存键中设置一个项目，不管它是否已经存在。
+            </summary>
+            <typeparam name="T">值的数据类型。</typeparam>
+            <param name="key">键。</param>
+            <param name="value">值。</param>
+            <param name="expiresIn">数据的生命周期。</param>
+            <returns></returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DataBaseUtil.IRedisDBAccess.SetAll``1(System.Collections.Generic.IDictionary{System.String,``0})">
+            <summary>
+            将多个值设置到缓存中。
+            </summary>
+            <typeparam name="T">值得数据类型。</typeparam>
+            <param name="values">以“键-值”形式表示的多个数据的集合。</param>
+        </member>
+        <member name="T:CPJIT.Library.CPJ4net.DataBaseUtil.Model.BaseMongoEntity">
+            <summary>
+            表示MongoDB基础属性的实体基类。
+            </summary>
+        </member>
+        <member name="P:CPJIT.Library.CPJ4net.DataBaseUtil.Model.BaseMongoEntity.Id">
+            <summary>
+            _id
+            </summary>
+        </member>
+        <member name="P:CPJIT.Library.CPJ4net.DataBaseUtil.Model.BaseMongoEntity.State">
+            <summary>
+            数据状态。
+            </summary>
+        </member>
+        <member name="P:CPJIT.Library.CPJ4net.DataBaseUtil.Model.BaseMongoEntity.CreateTime">
+            <summary>
+            数据创建时间。
+            </summary>
+        </member>
+        <member name="P:CPJIT.Library.CPJ4net.DataBaseUtil.Model.BaseMongoEntity.UpdateTime">
+            <summary>
+            数据更新时间。
+            </summary>
+        </member>
+        <member name="T:CPJIT.Library.CPJ4net.DirectoryUtil.IniUtil">
+            <summary>
+            ini文件操作工具
+            </summary>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DirectoryUtil.IniUtil.WritePrivateProfileString(System.String,System.String,System.String,System.String)">
+            <summary>
+            写入ini配置
+            </summary>
+            <param name="section">小节名称</param>
+            <param name="key">键</param>
+            <param name="val">值</param>
+            <param name="filePath">文件路径</param>
+            <returns>返回写入的字符串的长度</returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DirectoryUtil.IniUtil.GetPrivateProfileString(System.String,System.String,System.String,System.Text.StringBuilder,System.Int32,System.String)">
+            <summary>
+            读取ini配置
+            </summary>
+            <param name="section">小节名称</param>
+            <param name="key">键</param>
+            <param name="def">指定的条目没有找到时返回的默认值</param>
+            <param name="retVal">指定一个字串缓冲区</param>
+            <param name="size">指定装载到BuildString缓冲区的最大字符数量</param>
+            <param name="filePath">文件路径</param>
+            <returns>返回读取到的键对应的值</returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DirectoryUtil.IniUtil.WriteINI(System.String,System.String,System.String,System.String)">
+            <summary>
+            写入ini配置
+            </summary>
+            <param name="section">小节名称</param>
+            <param name="key">键</param>
+            <param name="value">The value.</param>
+            <param name="path">文件路径(包含文件名称的完整路径)</param>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DirectoryUtil.IniUtil.ReadINI(System.String,System.String,System.String,System.Text.StringBuilder,System.Int32,System.String)">
+            <summary>
+            读取ini配置
+            </summary>
+            <param name="section">小节名称</param>
+            <param name="key">小节的键</param>
+            <param name="def">指定的条目没有找到时返回的默认值</param>
+            <param name="retVal">指定一个字串缓冲区，该字符串参数用于临时存储返回读取到的值</param>
+            <param name="size">指定装载到BuildString缓冲区retVal的最大字符数量</param>
+            <param name="path">文件路径(包含文件名称的完整路径)</param>
+            <returns>返回读取到的小节的键对应的值</returns>
+        </member>
+        <member name="T:CPJIT.Library.CPJ4net.DirectoryUtil.FolderUtil">
+            <summary>
+            文件夹操作工具
+            </summary>
+        </member>
+        <member name="F:CPJIT.Library.CPJ4net.DirectoryUtil.FolderUtil.OF_READWIRTE">
+            <summary>
+            文件可读写标识符。
+            </summary>
+        </member>
+        <member name="F:CPJIT.Library.CPJ4net.DirectoryUtil.FolderUtil.OF_SHARE_DENY_NONE">
+            <summary>
+            文件共享标识符。
+            </summary>
+        </member>
+        <member name="F:CPJIT.Library.CPJ4net.DirectoryUtil.FolderUtil.HFILE_ERROR">
+            <summary>
+            文件被占用时的标识符。
+            </summary>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DirectoryUtil.FolderUtil._lopen(System.String,System.Int32)">
+            <summary>
+            获取文件占用状态。
+            </summary>
+            <param name="lpPathName">文件路径。</param>
+            <param name="iReadWrite">文件读写权限标识。</param>
+            <returns></returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DirectoryUtil.FolderUtil.CloseHandle(System.IntPtr)">
+            <summary>
+            解除文件或文件夹占用。
+            </summary>
+            <param name="hObject">文件占用状态。</param>
+            <returns></returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DirectoryUtil.FolderUtil.IsOccupied(System.String)">
+            <summary>
+            文件是否被占用。
+            </summary>
+            <param name="filePath">文件路径。</param>
+            <returns>true，被占用；false，未被占用。</returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DirectoryUtil.FolderUtil.RelieveOccupied(System.String)">
+            <summary>
+            解除文件占用。
+            </summary>
+            <param name="filePath">文件路径。</param>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DirectoryUtil.FolderUtil.GetAllFilesByStack(System.String)">
+            <summary>
+            通过堆栈的方式获取指定文件夹下的所有文件。不包含子文件夹。
+            </summary>
+            <param name="dirPath">指定文件夹的路径。</param>
+            <returns>子文件路径。</returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DirectoryUtil.FolderUtil.GetAllFilesAndFoldersByStack(System.String)">
+            <summary>
+            通过堆栈的方式获取指定文件夹下的所有文件夹及文件。
+            </summary>
+            <param name="dirPath">指定文件夹的路径。</param>
+            <returns>子文件和子文件夹的路径。</returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DirectoryUtil.FolderUtil.GetAllFiles(System.String,System.String)">
+            <summary>
+            获取指定文件夹下的所有文件（包括子文件夹的文件）
+            </summary>
+            <param name="dirPath"></param>
+            <param name="searchPattern">搜索的条件。只获取该指定后缀的文件。如“*.txt”</param>
+            <returns></returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DirectoryUtil.FolderUtil.CopyDirectory(System.String,System.String)">
+            <summary>
+            将整个文件夹复制到目标文件夹中。
+            </summary>
+            <param name="srcPath">源文件夹</param>
+            <param name="aimPath">目标文件夹</param>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DirectoryUtil.FolderUtil.DeleteDirectory(System.String)">
+            <summary>
+            将整个文件夹删除
+            </summary>
+            <param name="aimPath">目标文件夹</param>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DirectoryUtil.FolderUtil.DeleteDirectory(System.String,System.Boolean)">
+            <summary>
+            删除指定文件夹下的文件和子文件夹
+            </summary>
+            <param name="dirPath">目标路径</param>
+            <param name="deleteFolder">是否删除子文件夹</param>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.DirectoryUtil.FolderUtil.ReturnUpDirectory(System.String,System.Int32)">
+            <summary>
+            返回指定路径上层目录
+            </summary>
+            <param name="sourceDir">指定路径</param>
+            <param name="level">返回指定路径几层</param>
+        </member>
+        <member name="T:CPJIT.Library.CPJ4net.HttpUtil.IWebServiceInvoker">
+            <summary>
+            web服务调用接口。
+            </summary>
+        </member>
+        <member name="P:CPJIT.Library.CPJ4net.HttpUtil.IWebServiceInvoker.WebServiceUrl">
+            <summary>
+            WebService服务地址
+            </summary>
+        </member>
+        <member name="P:CPJIT.Library.CPJ4net.HttpUtil.IWebServiceInvoker.OutputDllFilename">
+            <summary>
+            输出编译后的dll的文件名。例如：cpjit.test
+            </summary>
+        </member>
+        <member name="P:CPJIT.Library.CPJ4net.HttpUtil.IWebServiceInvoker.ProxyClassName">
+            <summary>
+            代理类的名称
+            </summary>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.HttpUtil.IWebServiceInvoker.CreateWebService">
+            <summary>
+            创建WebService，生成客户端代理程序集文件
+            </summary>
+            <returns>返回：true或false</returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.HttpUtil.IWebServiceInvoker.GetResponseString``1(System.String,System.Object[])">
+            <summary>
+            获取请求响应
+            </summary>
+            <param name="methodName">调用的目标方法名称</param>
+            <param name="paras">参数</param>
+            <returns>返回Json字符串</returns>
+        </member>
+        <member name="T:CPJIT.Library.CPJ4net.HttpUtil.Impl.WebServiceInvoker">
+            <summary>
+            提供webservice动态调用。
+            </summary>
+        </member>
+        <member name="F:CPJIT.Library.CPJ4net.HttpUtil.Impl.WebServiceInvoker.proxyClassInstance">
+            <summary>
+            WebService代理类实例
+            </summary>
+        </member>
+        <member name="F:CPJIT.Library.CPJ4net.HttpUtil.Impl.WebServiceInvoker.dictMethod">
+            <summary>
+            接口方法字典。键：目标方法名称；值：方法信息
+            </summary>
+        </member>
+        <member name="P:CPJIT.Library.CPJ4net.HttpUtil.Impl.WebServiceInvoker.WebServiceUrl">
+            <summary>
+            WebService服务地址
+            </summary>
+        </member>
+        <member name="P:CPJIT.Library.CPJ4net.HttpUtil.Impl.WebServiceInvoker.OutputDllFilename">
+            <summary>
+            输出编译后的dll的文件名。例如：cpjit.test
+            </summary>
+        </member>
+        <member name="P:CPJIT.Library.CPJ4net.HttpUtil.Impl.WebServiceInvoker.ProxyClassName">
+            <summary>
+            代理类的名称
+            </summary>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.HttpUtil.Impl.WebServiceInvoker.#ctor">
+            <summary>
+            使用默认信息初始化WebServiceInvoker的实例
+            </summary>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.HttpUtil.Impl.WebServiceInvoker.#ctor(System.String,System.String,System.String)">
+            <summary>
+            使用指定信息初始化WebServiceInvoker的实例
+            </summary>
+            <param name="webserviceUrl">WebService服务地址</param>
+            <param name="outputDllFilename">输出编译后的dll的文件名。例如：cpjit.test</param>
+            <param name="proxyClassName">代理类的名称</param>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.HttpUtil.Impl.WebServiceInvoker.BuildMethods">
+            <summary>
+            反射构建Methods
+            </summary>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.HttpUtil.Impl.WebServiceInvoker.CreateWebService">
+            <summary>
+            创建WebService，生成客户端代理程序集文件
+            </summary>
+            <returns>返回：true或false</returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.HttpUtil.Impl.WebServiceInvoker.GetResponseString``1(System.String,System.Object[])">
+            <summary>
+            获取请求响应
+            </summary>
+            <param name="methodName">调用的目标方法名称</param>
+            <param name="paras">参数</param>
+            <returns>返回Json字符串</returns>
+        </member>
+        <member name="T:CPJIT.Library.CPJ4net.JsonUtil.JsonValidateUtil">
+            <summary>
+            提供json的校验工具
+            </summary>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.JsonUtil.JsonValidateUtil.JsonFormat(System.String)">
+            <summary>
+            格式化json字符串
+            </summary>
+            <param name="str"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.JsonUtil.JsonValidateUtil.IsJson(System.String)">
+            <summary>
+            是否为json字符串
+            </summary>
+            <param name="json"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.JsonUtil.JsonValidateUtil.IsJson(System.String,System.Int32@)">
+            <summary>
+            是否为json字符串
+            </summary>
+            <param name="json"></param>
+            <param name="errIndex"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.JsonUtil.JsonValidateUtil.GetValueLength(System.String,System.Boolean,System.Int32@)">
+            <summary>
+            获取值的长度（当Json值嵌套以"{"或"["开头时）
+            </summary>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.JsonUtil.JsonValidateUtil.SetCharState(System.Char,CPJIT.Library.CPJ4net.JsonUtil.JsonValidateUtil.CharState@)">
+            <summary>
+            设置字符状态(返回true则为关键词，返回false则当为普通字符处理）
+            </summary>
+        </member>
+        <member name="T:CPJIT.Library.CPJ4net.JsonUtil.JsonValidateUtil.CharState">
+            <summary>
+            字符状态
+            </summary>
+        </member>
+        <member name="F:CPJIT.Library.CPJ4net.JsonUtil.JsonValidateUtil.CharState.arrayStart">
+            <summary>
+            数组开始【仅第一开头才算】，值嵌套的以【childrenStart】来标识。
+            </summary>
+        </member>
+        <member name="F:CPJIT.Library.CPJ4net.JsonUtil.JsonValidateUtil.CharState.state">
+            <summary>
+            【0 初始状态，或 遇到“,”逗号】；【1 遇到“：”冒号】
+            </summary>
+        </member>
+        <member name="F:CPJIT.Library.CPJ4net.JsonUtil.JsonValidateUtil.CharState.keyStart">
+            <summary>
+            【-1 取值结束】【0 未开始】【1 无引号开始】【2 单引号开始】【3 双引号开始】
+            </summary>
+        </member>
+        <member name="F:CPJIT.Library.CPJ4net.JsonUtil.JsonValidateUtil.CharState.valueStart">
+            <summary>
+            【-1 取值结束】【0 未开始】【1 无引号开始】【2 单引号开始】【3 双引号开始】
+            </summary>
+        </member>
+        <member name="T:CPJIT.Library.CPJ4net.JsonUtil.JsonSeializeUtil">
+            <summary>
+            Json序列化工具
+            </summary>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.JsonUtil.JsonSeializeUtil.ObjectToJsonString(System.Object)">
+            <summary>
+            将类序列化成json规范的字符串
+            </summary>
+            <param name="jsonObject"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.JsonUtil.JsonSeializeUtil.JsonStringToObject``1(System.String)">
+            <summary>
+            将json字符串反序列化为对应的类型
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="jsonString"></param>
+            <returns></returns>
+        </member>
+        <member name="T:CPJIT.Library.CPJ4net.SecurityUtil.MD5Util">
+            <summary>
+            提供不可逆的MD5加密
+            </summary>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.SecurityUtil.MD5Util.GetMd5(System.String)">
+            <summary>
+            获取字符串的MD5值
+            </summary>
+            <param name="str">字符串</param>
+            <returns></returns>
+        </member>
+        <member name="T:CPJIT.Library.CPJ4net.SecurityUtil.RC2Util">
+            <summary>
+            提供对称的RC2加密。
+            </summary>
+        </member>
+        <member name="F:CPJIT.Library.CPJ4net.SecurityUtil.RC2Util.rc2">
+            <summary>
+            RC2加密对象
+            </summary>
+        </member>
+        <member name="P:CPJIT.Library.CPJ4net.SecurityUtil.RC2Util.Key">
+            <summary>
+            公钥
+            </summary>
+        </member>
+        <member name="F:CPJIT.Library.CPJ4net.SecurityUtil.RC2Util.IV">
+            <summary>
+            私钥
+            </summary>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.SecurityUtil.RC2Util.#ctor">
+            <summary>
+            使用默认参数创建实例
+            </summary>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.SecurityUtil.RC2Util.#ctor(System.String)">
+            <summary>
+            使用指定参数创建实例
+            </summary>
+            <param name="key">公钥</param>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.SecurityUtil.RC2Util.#ctor(System.String,System.String)">
+            <summary>
+            使用指定参数创建实例。
+            </summary>
+            <param name="key">公钥</param>
+            <param name="iv">私钥</param>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.SecurityUtil.RC2Util.GetLegalKey">
+            <summary>
+            获得密钥
+            </summary>
+            <returns>密钥</returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.SecurityUtil.RC2Util.GetLegalIV">
+            <summary>
+            获得初始向量IV
+            </summary>
+            <returns>初试向量IV</returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.SecurityUtil.RC2Util.Encrypt(System.String)">
+            <summary>
+            加密方法
+            </summary>
+            <param name="Source">待加密的串</param>
+            <returns>经过加密的串</returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.SecurityUtil.RC2Util.Decrypt(System.String)">
+            <summary>
+            解密方法
+            </summary>
+            <param name="Source">待解密的串</param>
+            <returns>经过解密的串</returns>
+        </member>
+        <member name="T:CPJIT.Library.CPJ4net.SocketUtil.ITcpClient">
+            <summary>
+            表示TCP客户端工具的接口。
+            </summary>
+        </member>
+        <member name="P:CPJIT.Library.CPJ4net.SocketUtil.ITcpClient.ServerIpAddress">
+            <summary>
+            服务端IP
+            </summary>
+        </member>
+        <member name="P:CPJIT.Library.CPJ4net.SocketUtil.ITcpClient.ServerPort">
+            <summary>
+            服务端端口
+            </summary>
+        </member>
+        <member name="P:CPJIT.Library.CPJ4net.SocketUtil.ITcpClient.IsConnect">
+            <summary>
+            是否连接到服务端
+            </summary>
+        </member>
+        <member name="P:CPJIT.Library.CPJ4net.SocketUtil.ITcpClient.Encoding">
+            <summary>
+            编码格式（默认Default）
+            </summary>
+        </member>
+        <member name="P:CPJIT.Library.CPJ4net.SocketUtil.ITcpClient.Terminator">
+            <summary>
+            表示消息的终止符。避免消息粘连。
+            </summary>
+        </member>
+        <member name="E:CPJIT.Library.CPJ4net.SocketUtil.ITcpClient.OnConnected">
+            <summary>
+            当与服务端成功连接时发生
+            </summary>
+        </member>
+        <member name="E:CPJIT.Library.CPJ4net.SocketUtil.ITcpClient.OnDisconnected">
+            <summary>
+            当与服务端断开连接时发生
+            </summary>
+        </member>
+        <member name="E:CPJIT.Library.CPJ4net.SocketUtil.ITcpClient.OnReceived">
+            <summary>
+            接收到来自服务端的消息时发生
+            </summary>
+        </member>
+        <member name="E:CPJIT.Library.CPJ4net.SocketUtil.ITcpClient.OnException">
+            <summary>
+            当客户出现异常时发生
+            </summary>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.SocketUtil.ITcpClient.Connect">
+            <summary>
+            连接服务端
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.SocketUtil.ITcpClient.Close">
+            <summary>
+            断开与服务端的连接
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.SocketUtil.ITcpClient.Send(System.String)">
+            <summary>
+            发送消息
+            </summary>
+            <param name="message">消息文本</param>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.SocketUtil.ITcpClient.Send(System.Byte[])">
+            <summary>
+            发送消息
+            </summary>
+            <param name="data">字节数组形式的消息</param>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.SocketUtil.ITcpClient.Dispose">
+            <summary>
+            释放对象
+            </summary>
+        </member>
+        <member name="T:CPJIT.Library.CPJ4net.SocketUtil.ITcpServer">
+            <summary>
+            表示TCP服务端通讯工具接口
+            </summary>
+        </member>
+        <member name="P:CPJIT.Library.CPJ4net.SocketUtil.ITcpServer.TcpClients">
+            <summary>
+            客户端键值表（键：IP:Port；值：Session对象）
+            </summary>
+        </member>
+        <member name="P:CPJIT.Library.CPJ4net.SocketUtil.ITcpServer.IPAddress">
+            <summary>
+            服务端监听的IP地址
+            </summary>
+        </member>
+        <member name="P:CPJIT.Library.CPJ4net.SocketUtil.ITcpServer.Port">
+            <summary>
+            服务端监听的端口
+            </summary>
+        </member>
+        <member name="P:CPJIT.Library.CPJ4net.SocketUtil.ITcpServer.IsAutoReply">
+            <summary>
+            收到数据后是否自动回复（true：回复，false：不回复，默认为false）
+            </summary>
+        </member>
+        <member name="P:CPJIT.Library.CPJ4net.SocketUtil.ITcpServer.ReplyContent">
+            <summary>
+            自动回复的内容（默认回复“success”）
+            </summary>
+        </member>
+        <member name="P:CPJIT.Library.CPJ4net.SocketUtil.ITcpServer.Encoding">
+            <summary>
+            通讯使用的编码（默认使用Default）
+            </summary>
+        </member>
+        <member name="P:CPJIT.Library.CPJ4net.SocketUtil.ITcpServer.Terminator">
+            <summary>
+            表示消息的终止符。避免消息粘连。
+            </summary>
+        </member>
+        <member name="E:CPJIT.Library.CPJ4net.SocketUtil.ITcpServer.OnReceived">
+            <summary>
+            接收到来自客户端的消息时发生
+            </summary>
+        </member>
+        <member name="E:CPJIT.Library.CPJ4net.SocketUtil.ITcpServer.OnConnected">
+            <summary>
+            当有客户端连上服务端时发生
+            </summary>
+        </member>
+        <member name="E:CPJIT.Library.CPJ4net.SocketUtil.ITcpServer.OnDisconnected">
+            <summary>
+            当有客户端与服务端断开连接时发生
+            </summary>
+        </member>
+        <member name="E:CPJIT.Library.CPJ4net.SocketUtil.ITcpServer.OnServerException">
+            <summary>
+            当服务端出现异常时发生
+            </summary>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.SocketUtil.ITcpServer.Start">
+            <summary>
+            启动服务
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.SocketUtil.ITcpServer.Stop">
+            <summary>
+            停止服务
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.SocketUtil.ITcpServer.Send(System.Net.Sockets.Socket,System.String)">
+            <summary>
+            发送消息
+            </summary>
+            <param name="socketClient">客户端socket对象</param>
+            <param name="message">文本消息内容</param>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.SocketUtil.ITcpServer.Send(System.Net.Sockets.Socket,System.Byte[])">
+            <summary>
+            发送消息
+            </summary>
+            <param name="socketClient">客户端socket对象</param>
+            <param name="bytes">字节数组消息内容</param>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.SocketUtil.ITcpServer.CloseAllSession">
+            <summary>
+            断开所有客户端会话
+            </summary>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.SocketUtil.ITcpServer.Dispose">
+            <summary>
+            实现释放分配的资源的接口
+            </summary>
+        </member>
+        <member name="T:CPJIT.Library.CPJ4net.SocketUtil.IUdpClient">
+            <summary>
+            表示Udp通讯工具的接口
+            </summary>
+        </member>
+        <member name="P:CPJIT.Library.CPJ4net.SocketUtil.IUdpClient.IsAutoReply">
+            <summary>
+            收到消息后是否自动回复（true表示自动回复，false表示不自动回复，默认不自动回复）
+            </summary>
+        </member>
+        <member name="P:CPJIT.Library.CPJ4net.SocketUtil.IUdpClient.ReplyContent">
+            <summary>
+            自动回复内容（默认值为“success”）
+            </summary>
+        </member>
+        <member name="E:CPJIT.Library.CPJ4net.SocketUtil.IUdpClient.OnReceiver">
+            <summary>
+            当收到消息时发生
+            </summary>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.SocketUtil.IUdpClient.Start">
+            <summary>
+            启动UDP通讯
+            </summary>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.SocketUtil.IUdpClient.Stop">
+            <summary>
+            停止并释放UDP通讯
+            </summary>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.SocketUtil.IUdpClient.Send(System.String,System.Net.EndPoint)">
+            <summary>
+            发送消息
+            </summary>
+            <param name="message"></param>
+            <param name="epRemote"></param>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.SocketUtil.IUdpClient.Send(System.Byte[],System.Net.EndPoint)">
+            <summary>
+            发送消息
+            </summary>
+            <param name="bytes">数据</param>
+            <param name="epRemote"></param>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.SocketUtil.IUdpClient.Dispose">
+            <summary>
+            释放系统资源
+            </summary>
+        </member>
+        <member name="T:CPJIT.Library.CPJ4net.SocketUtil.Model.ExceptionEventArgs">
+            <summary>
+            表示包含事件异常信息。
+            </summary>
+        </member>
+        <member name="P:CPJIT.Library.CPJ4net.SocketUtil.Model.ExceptionEventArgs.Exception">
+            <summary>
+            异常对象
+            </summary>
+        </member>
+        <member name="T:CPJIT.Library.CPJ4net.SocketUtil.Model.DataEventArgs">
+            <summary>
+            表示远程端UDP信息
+            </summary>
+        </member>
+        <member name="P:CPJIT.Library.CPJ4net.SocketUtil.Model.DataEventArgs.Bytes">
+            <summary>
+            接收到的数据
+            </summary>
+        </member>
+        <member name="P:CPJIT.Library.CPJ4net.SocketUtil.Model.DataEventArgs.Message">
+            <summary>
+            接收到的数据
+            </summary>
+        </member>
+        <member name="P:CPJIT.Library.CPJ4net.SocketUtil.Model.DataEventArgs.RemoteIP">
+            <summary>
+            远端IP地址
+            </summary>
+        </member>
+        <member name="P:CPJIT.Library.CPJ4net.SocketUtil.Model.DataEventArgs.RemotePort">
+            <summary>
+            远端端口
+            </summary>
+        </member>
+        <member name="P:CPJIT.Library.CPJ4net.SocketUtil.Model.DataEventArgs.RemoteIpEndPoint">
+            <summary>
+            远程端IP与端口
+            </summary>
+        </member>
+        <member name="T:CPJIT.Library.CPJ4net.SocketUtil.Model.SessionEventArgs">
+            <summary>
+            表示与服务端之间的客户端会话
+            </summary>
+        </member>
+        <member name="P:CPJIT.Library.CPJ4net.SocketUtil.Model.SessionEventArgs.IP">
+            <summary>
+            客户端的IP地址
+            </summary>
+        </member>
+        <member name="P:CPJIT.Library.CPJ4net.SocketUtil.Model.SessionEventArgs.Port">
+            <summary>
+            客户端的端口
+            </summary>
+        </member>
+        <member name="P:CPJIT.Library.CPJ4net.SocketUtil.Model.SessionEventArgs.IpPort">
+            <summary>
+            客户端的IP和端口
+            </summary>
+        </member>
+        <member name="P:CPJIT.Library.CPJ4net.SocketUtil.Model.SessionEventArgs.Bytes">
+            <summary>
+            接收的数据
+            </summary>
+        </member>
+        <member name="P:CPJIT.Library.CPJ4net.SocketUtil.Model.SessionEventArgs.Message">
+            <summary>
+            接收的数据
+            </summary>
+        </member>
+        <member name="P:CPJIT.Library.CPJ4net.SocketUtil.Model.SessionEventArgs.Exception">
+            <summary>
+            异常
+            </summary>
+        </member>
+        <member name="P:CPJIT.Library.CPJ4net.SocketUtil.Model.SessionEventArgs.SocketClient">
+            <summary>
+            与客户端关联的Socket对象
+            </summary>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.SocketUtil.Model.SessionEventArgs.#ctor(System.Net.Sockets.Socket)">
+            <summary>
+            使用指定的socket对象实例化对象
+            </summary>
+            <param name="socketCliet"></param>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.SocketUtil.Model.SessionEventArgs.Close">
+            <summary>
+            关闭与客户端关联的会话
+            </summary>
+        </member>
+        <member name="T:CPJIT.Library.CPJ4net.SocketUtil.Impl.TcpClient">
+            <summary>
+            TCP客户端通讯工具
+            </summary>
+        </member>
+        <member name="F:CPJIT.Library.CPJ4net.SocketUtil.Impl.TcpClient.socketClient">
+            <summary>
+            TCP客户端
+            </summary>
+        </member>
+        <member name="F:CPJIT.Library.CPJ4net.SocketUtil.Impl.TcpClient.bufferSize">
+            <summary>
+            消息缓冲区大小
+            </summary>
+        </member>
+        <member name="P:CPJIT.Library.CPJ4net.SocketUtil.Impl.TcpClient.ServerIpAddress">
+            <summary>
+            服务端IP
+            </summary>
+        </member>
+        <member name="P:CPJIT.Library.CPJ4net.SocketUtil.Impl.TcpClient.ServerPort">
+            <summary>
+            服务端端口
+            </summary>
+        </member>
+        <member name="P:CPJIT.Library.CPJ4net.SocketUtil.Impl.TcpClient.IsConnect">
+            <summary>
+            是否连接到服务端
+            </summary>
+        </member>
+        <member name="P:CPJIT.Library.CPJ4net.SocketUtil.Impl.TcpClient.Encoding">
+            <summary>
+            编码格式（默认Default）
+            </summary>
+        </member>
+        <member name="P:CPJIT.Library.CPJ4net.SocketUtil.Impl.TcpClient.Terminator">
+            <summary>
+            表示消息的终止符。避免消息粘连。
+            </summary>
+        </member>
+        <member name="E:CPJIT.Library.CPJ4net.SocketUtil.Impl.TcpClient.OnConnected">
+            <summary>
+            当与服务端成功连接时发生
+            </summary>
+        </member>
+        <member name="E:CPJIT.Library.CPJ4net.SocketUtil.Impl.TcpClient.OnDisconnected">
+            <summary>
+            当与服务端断开连接时发生
+            </summary>
+        </member>
+        <member name="E:CPJIT.Library.CPJ4net.SocketUtil.Impl.TcpClient.OnReceived">
+            <summary>
+            接收到来自服务端的消息时发生
+            </summary>
+        </member>
+        <member name="E:CPJIT.Library.CPJ4net.SocketUtil.Impl.TcpClient.OnException">
+            <summary>
+            当客户出现异常时发生
+            </summary>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.SocketUtil.Impl.TcpClient.#ctor(System.String,System.Int32)">
+            <summary>
+            使用指定的参数信息实例化TCP客户端对象
+            </summary>
+            <param name="serverIP">服务端IP地址</param>
+            <param name="serverPort">服务端端口</param>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.SocketUtil.Impl.TcpClient.ConnectCallback(System.IAsyncResult)">
+            <summary>
+            连接服务端的回调方法
+            </summary>
+            <param name="iar"></param>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.SocketUtil.Impl.TcpClient.ReceiveDataCallback(System.IAsyncResult)">
+            <summary>
+            接收数据的回调方法
+            </summary>
+            <param name="iar"></param>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.SocketUtil.Impl.TcpClient.SendCallback(System.IAsyncResult)">
+            <summary>
+            发送消息的回调方法
+            </summary>
+            <param name="iar"></param>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.SocketUtil.Impl.TcpClient.Connect">
+            <summary>
+            连接服务端
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.SocketUtil.Impl.TcpClient.Close">
+            <summary>
+            断开与服务端的连接
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.SocketUtil.Impl.TcpClient.Send(System.String)">
+            <summary>
+            发送消息
+            </summary>
+            <param name="message">消息文本</param>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.SocketUtil.Impl.TcpClient.Send(System.Byte[])">
+            <summary>
+            发送消息
+            </summary>
+            <param name="data">字节数组形式的消息</param>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.SocketUtil.Impl.TcpClient.Dispose">
+            <summary>
+            释放对象
+            </summary>
+        </member>
+        <member name="T:CPJIT.Library.CPJ4net.SocketUtil.Impl.TcpServer">
+            <summary>
+            TCP服务端通讯工具
+            </summary>
+        </member>
+        <member name="F:CPJIT.Library.CPJ4net.SocketUtil.Impl.TcpServer.isRun">
+            <summary>
+            tcp服务端是否继续工作
+            </summary>
+        </member>
+        <member name="F:CPJIT.Library.CPJ4net.SocketUtil.Impl.TcpServer.maxClient">
+            <summary>
+            服务器允许的最大客户端连接数
+            </summary>
+        </member>
+        <member name="F:CPJIT.Library.CPJ4net.SocketUtil.Impl.TcpServer.currentClient">
+            <summary>
+            当前客户端连接数
+            </summary>
+        </member>
+        <member name="F:CPJIT.Library.CPJ4net.SocketUtil.Impl.TcpServer.socetServer">
+            <summary>
+            服务端的Socket对象
+            </summary>
+        </member>
+        <member name="F:CPJIT.Library.CPJ4net.SocketUtil.Impl.TcpServer.bufferSize">
+            <summary>
+            消息缓冲区大小
+            </summary>
+        </member>
+        <member name="P:CPJIT.Library.CPJ4net.SocketUtil.Impl.TcpServer.TcpClients">
+            <summary>
+            客户端键值表（键：IP:Port；值：SessionEventArgs）
+            </summary>
+        </member>
+        <member name="P:CPJIT.Library.CPJ4net.SocketUtil.Impl.TcpServer.IPAddress">
+            <summary>
+            服务端监听的IP地址
+            </summary>
+        </member>
+        <member name="P:CPJIT.Library.CPJ4net.SocketUtil.Impl.TcpServer.Port">
+            <summary>
+            服务端监听的端口
+            </summary>
+        </member>
+        <member name="P:CPJIT.Library.CPJ4net.SocketUtil.Impl.TcpServer.IsAutoReply">
+            <summary>
+            收到数据后是否自动回复（true：回复，false：不回复，默认为false）
+            </summary>
+        </member>
+        <member name="P:CPJIT.Library.CPJ4net.SocketUtil.Impl.TcpServer.ReplyContent">
+            <summary>
+            自动回复的内容（默认回复“success”）
+            </summary>
+        </member>
+        <member name="P:CPJIT.Library.CPJ4net.SocketUtil.Impl.TcpServer.Encoding">
+            <summary>
+            通讯使用的编码（默认使用Default）
+            </summary>
+        </member>
+        <member name="P:CPJIT.Library.CPJ4net.SocketUtil.Impl.TcpServer.Terminator">
+            <summary>
+            表示消息的终止符。避免消息粘连。
+            </summary>
+        </member>
+        <member name="E:CPJIT.Library.CPJ4net.SocketUtil.Impl.TcpServer.OnReceived">
+            <summary>
+            接收到来自客户端的消息时发生
+            </summary>
+        </member>
+        <member name="E:CPJIT.Library.CPJ4net.SocketUtil.Impl.TcpServer.OnConnected">
+            <summary>
+            当有客户端连上服务端时发生
+            </summary>
+        </member>
+        <member name="E:CPJIT.Library.CPJ4net.SocketUtil.Impl.TcpServer.OnDisconnected">
+            <summary>
+            当有客户端与服务端断开连接时发生
+            </summary>
+        </member>
+        <member name="E:CPJIT.Library.CPJ4net.SocketUtil.Impl.TcpServer.OnServerException">
+            <summary>
+            当服务端出现异常时发生
+            </summary>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.SocketUtil.Impl.TcpServer.#ctor(System.String,System.Int32)">
+            <summary>
+            使用指定的ip和端口实例化服务端通讯工具
+            </summary>
+            <param name="ip">服务端ip</param>
+            <param name="port">服务端端口</param>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.SocketUtil.Impl.TcpServer.#ctor(System.String,System.Int32,System.Int32)">
+            <summary>
+            使用指定的ip和端口实例化服务端通讯工具
+            </summary>
+            <param name="ip">服务端ip</param>
+            <param name="port">服务端端口</param>
+            <param name="maxClient">服务端允许的最大客户端连接数</param>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.SocketUtil.Impl.TcpServer.AcceptTcpClientCallback(System.IAsyncResult)">
+            <summary>
+            异步接收客户端连接
+            </summary>
+            <param name="iar"></param>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.SocketUtil.Impl.TcpServer.ReceiveMessageCallback(System.IAsyncResult)">
+            <summary>
+            异步接受消息
+            </summary>
+            <param name="iar"></param>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.SocketUtil.Impl.TcpServer.SendCallback(System.IAsyncResult)">
+            <summary>
+            发送消息的回调方法
+            </summary>
+            <param name="iar"></param>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.SocketUtil.Impl.TcpServer.CloseSession(CPJIT.Library.CPJ4net.SocketUtil.Model.SessionEventArgs)">
+            <summary>
+            释放客户端会话
+            </summary>
+            <param name="session"></param>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.SocketUtil.Impl.TcpServer.DisposeObject">
+            <summary>
+            释放对象
+            </summary>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.SocketUtil.Impl.TcpServer.Finalize">
+            <summary>
+            析构函数，释放资源
+            </summary>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.SocketUtil.Impl.TcpServer.Start">
+            <summary>
+            启动服务
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.SocketUtil.Impl.TcpServer.Stop">
+            <summary>
+            停止服务
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.SocketUtil.Impl.TcpServer.Send(System.Net.Sockets.Socket,System.String)">
+            <summary>
+            发送消息
+            </summary>
+            <param name="socketClient">客户端socket对象</param>
+            <param name="message">文本消息内容</param>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.SocketUtil.Impl.TcpServer.Send(System.Net.Sockets.Socket,System.Byte[])">
+            <summary>
+            发送消息
+            </summary>
+            <param name="socketClient">客户端socket对象</param>
+            <param name="bytes">字节数组消息内容</param>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.SocketUtil.Impl.TcpServer.CloseAllSession">
+            <summary>
+            断开所有客户端会话
+            </summary>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.SocketUtil.Impl.TcpServer.Dispose">
+            <summary>
+            实现释放分配的资源的接口
+            </summary>
+        </member>
+        <member name="T:CPJIT.Library.CPJ4net.SocketUtil.Impl.UdpClient">
+            <summary>
+            提供UDP通讯
+            </summary>
+        </member>
+        <member name="F:CPJIT.Library.CPJ4net.SocketUtil.Impl.UdpClient.bufferSize">
+            <summary>
+            缓冲区大小
+            </summary>
+        </member>
+        <member name="F:CPJIT.Library.CPJ4net.SocketUtil.Impl.UdpClient.epLocal">
+            <summary>
+            本地ip与端口信息
+            </summary>
+        </member>
+        <member name="F:CPJIT.Library.CPJ4net.SocketUtil.Impl.UdpClient.udp">
+            <summary>
+            UDP通讯对象
+            </summary>
+        </member>
+        <member name="F:CPJIT.Library.CPJ4net.SocketUtil.Impl.UdpClient.isRun">
+            <summary>
+            程序是否在工作
+            </summary>
+        </member>
+        <member name="P:CPJIT.Library.CPJ4net.SocketUtil.Impl.UdpClient.IsAutoReply">
+            <summary>
+            收到消息后是否自动回复（true表示自动回复，false表示不自动回复，默认不自动回复）
+            </summary>
+        </member>
+        <member name="P:CPJIT.Library.CPJ4net.SocketUtil.Impl.UdpClient.ReplyContent">
+            <summary>
+            自动回复内容（默认值为“success”）
+            </summary>
+        </member>
+        <member name="E:CPJIT.Library.CPJ4net.SocketUtil.Impl.UdpClient.OnReceiver">
+            <summary>
+            当收到消息时发生
+            </summary>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.SocketUtil.Impl.UdpClient.#ctor(System.String,System.Int32)">
+            <summary>
+            创建一个UDP通讯的实例
+            </summary>
+            <param name="localIP">本地IP</param>
+            <param name="localPort">本地端口</param>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.SocketUtil.Impl.UdpClient.Receive(System.Net.Sockets.Socket)">
+            <summary>
+            接收消息
+            </summary>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.SocketUtil.Impl.UdpClient.ReceiveCallback(System.IAsyncResult)">
+            <summary>
+            接收消息的回调方法
+            </summary>
+            <param name="iar"></param>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.SocketUtil.Impl.UdpClient.SendCallback(System.IAsyncResult)">
+            <summary>
+            发送消息的回调方法
+            </summary>
+            <param name="iar"></param>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.SocketUtil.Impl.UdpClient.DisposeObject">
+            <summary>
+            释放系统资源
+            </summary>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.SocketUtil.Impl.UdpClient.Finalize">
+            <summary>
+            析构函数
+            </summary>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.SocketUtil.Impl.UdpClient.Start">
+            <summary>
+            启动UDP通讯
+            </summary>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.SocketUtil.Impl.UdpClient.Stop">
+            <summary>
+            停止并释放UDP通讯
+            </summary>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.SocketUtil.Impl.UdpClient.Send(System.String,System.Net.EndPoint)">
+            <summary>
+            发送消息
+            </summary>
+            <param name="message"></param>
+            <param name="epRemote"></param>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.SocketUtil.Impl.UdpClient.Send(System.Byte[],System.Net.EndPoint)">
+            <summary>
+            发送消息
+            </summary>
+            <param name="bytes">数据</param>
+            <param name="epRemote"></param>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.SocketUtil.Impl.UdpClient.Dispose">
+            <summary>
+            释放系统资源
+            </summary>
+        </member>
+        <member name="T:CPJIT.Library.CPJ4net.XmlUtil.XmlSerializeUtil">
+            <summary>
+            Xml序列化工具
+            </summary>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.XmlUtil.XmlSerializeUtil.ObjectToXmlString(System.Object)">
+            <summary>
+            将类序列化成xml规范的字符串
+            </summary>
+            <param name="xmlObject"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.XmlUtil.XmlSerializeUtil.XmlStringToObject``1(System.String)">
+            <summary>
+            将xml字符串反序列化
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="xmlString"></param>
+            <returns></returns>
+        </member>
+        <member name="T:CPJIT.Library.CPJ4net.XmlUtil.XmlUtil">
+            <summary>
+            基于XPath的XML工具。
+            </summary>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.XmlUtil.XmlUtil.GetObject``1(System.String,System.String)">
+            <summary>
+            获取表示目标xml节点内容，并以类型的方式呈现。
+            </summary>
+            <typeparam name="T">实体类型。</typeparam>
+            <param name="filePath">xml文件完整路径。</param>
+            <param name="expression">xpath表达式。</param>
+            <returns>返回实体。</returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.XmlUtil.XmlUtil.GetObjects``1(System.String,System.String)">
+            <summary>
+            获取表示目标xml节点内容，并以类型的列表的方式呈现。
+            </summary>
+            <typeparam name="T">实体类型。</typeparam>
+            <param name="filePath">xml文件完整路径。</param>
+            <param name="expression">xpath表达式。</param>
+            <returns>返回实体列表。</returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.XmlUtil.XmlUtil.AddElement(System.String,System.String,System.String,System.String)">
+            <summary>
+            添加节点信息。
+            </summary>
+            <param name="filePath">xml文件完整路径。</param>
+            <param name="expression">xpath表达式。新元素将被作为xpath定位到的节点的子元素。</param>
+            <param name="elementName">被添加的节点的名称。</param>
+            <param name="elementValue">被添加的节点的值。</param>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.XmlUtil.XmlUtil.AddELement``1(System.String,System.String,``0)">
+            <summary>
+            添加节点信息。
+            </summary>
+            <typeparam name="T">表示被添加的实体的类型。</typeparam>
+            <param name="filePath">xml文件完整路径。</param>
+            <param name="expression">xpath表达式。新元素将被作为xpath定位到的节点的子元素。</param>
+            <param name="model">被添加的实体对象。该实体的属性将被对应写入xml节点中。</param>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.XmlUtil.XmlUtil.UpdateElement(System.String,System.String,System.String,System.String)">
+            <summary>
+            更新节点信息。如果不存在该节点则新增，如果存在则修改。更新的内容为表达式定位到的目标节点的子节点信息。
+            </summary>
+            <param name="filePath">xml文件完整路径。</param>
+            <param name="expression">xpath表达式。</param>
+            <param name="elementName">xpath表达式定位的节点的被修改的子节点名称。</param>
+            <param name="elementVlaue">xpath表达式定位的节点的被修改的子节点的值。</param>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.XmlUtil.XmlUtil.UpdateElement(System.String,System.String,System.Collections.Generic.IDictionary{System.String,System.Object})">
+            <summary>
+            更新节点信息。如果不存在该节点则新增，如果存在则修改。更新的内容为表达式定位到的目标节点的子节点信息。
+            </summary>
+            <param name="filePath">xml文件完整路径。</param>
+            <param name="expression">xpath表达式。</param>
+            <param name="param">xpath表达式定位的节点的要修改的子节点信息。（键：节点名称；值：节点值）</param>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.XmlUtil.XmlUtil.UpdateElement``1(System.String,System.String,``0)">
+            <summary>
+            保存或更新节点信息。如果不存在该节点则新增，如果存在则修改。更新的内容为表达式定位到的目标节点的子节点信息。
+            </summary>
+            <typeparam name="T">实体类型，限定为类。</typeparam>
+            <param name="filePath">xml文件完整路径。</param>
+            <param name="expression">xpath表达式。</param>
+            <param name="model">实体对象。</param>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.XmlUtil.XmlUtil.UpdateAttribute(System.String,System.String,System.Collections.Generic.IDictionary{System.String,System.Object})">
+            <summary>
+            保存或更新节点的属性信息。如果不存在该节点的属性则新增，如果存在则修改。
+            </summary>
+            <param name="filePath">xml文件完整路径。</param>
+            <param name="expression">xpath表达式。</param>
+            <param name="param">xpath表达式定位的节点的要修改的子节点信息。（键：节点名称；值：节点值）</param>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.XmlUtil.XmlUtil.DeleteElement(System.String,System.String)">
+            <summary>
+            删除节点。
+            </summary>
+            <param name="filePath">xml文件完整路径。</param>
+            <param name="expression">xpath表达式。</param>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.XmlUtil.XmlUtil.DeleteElement(System.String,System.String,System.String)">
+            <summary>
+            删除节点。
+            </summary>
+            <param name="filePath">xml文件完整路径。</param>
+            <param name="expression">xpath表达式。</param>
+            <param name="elementName">xpath表达式定位的节点的子节点名称。</param>
+        </member>
+        <member name="T:CPJIT.Library.CPJ4net.SoundUtil.SoundRecordUtil">
+            <summary>
+            录音工具。该工具借用win32 API实现，如果要录制高品质音频，请使用其它方式，例如Microsoft DirectX。
+            </summary>
+        </member>
+        <member name="T:CPJIT.Library.CPJ4net.WCFUtil.Enums.TransferProtocol">
+            <summary>
+            传输协议
+            </summary>
+        </member>
+        <member name="F:CPJIT.Library.CPJ4net.WCFUtil.Enums.TransferProtocol.TCP">
+            <summary>
+            使用TCP协议传输数据
+            </summary>
+        </member>
+        <member name="F:CPJIT.Library.CPJ4net.WCFUtil.Enums.TransferProtocol.HTTP">
+            <summary>
+            使用HTTP协议传输数据
+            </summary>
+        </member>
+        <member name="F:CPJIT.Library.CPJ4net.WCFUtil.Enums.TransferProtocol.PEER">
+            <summary>
+            使用对等网络协议传输数据
+            </summary>
+        </member>
+        <member name="F:CPJIT.Library.CPJ4net.WCFUtil.Enums.TransferProtocol.PIPE">
+            <summary>
+            使用通信管道传输数据
+            </summary>
+        </member>
+        <member name="F:CPJIT.Library.CPJ4net.WCFUtil.Enums.TransferProtocol.MSMQ">
+            <summary>
+            使用微软消息队列MicroSoft Message Queue传输数据
+            </summary>
+        </member>
+        <member name="T:CPJIT.Library.CPJ4net.WCFUtil.Factory.WCFChannelFactory">
+            <summary>
+            WCF信道工厂
+            </summary>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.WCFUtil.Factory.WCFChannelFactory.SetMaxItemsInObjectGraph(System.ServiceModel.Description.ServiceEndpoint)">
+            <summary>
+            设置对象图中的最大项
+            </summary>
+            <param name="ep"></param>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.WCFUtil.Factory.WCFChannelFactory.CreateChannel``1(System.ServiceModel.Description.ServiceEndpoint)">
+            <summary>
+            创建信道
+            </summary>
+            <typeparam name="TContract">接口协议</typeparam>
+            <param name="ep">客户端与服务端的通信终结点</param>
+            <returns></returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.WCFUtil.Factory.WCFChannelFactory.CreateChannel``1(System.String)">
+            <summary>
+            创建信道
+            </summary>
+            <typeparam name="TContract">接口协议</typeparam>
+            <param name="endpointConfigurationName">表示客户端与服务端的通信终结点的配置信息名称</param>
+            <returns></returns>
+        </member>
+        <member name="T:CPJIT.Library.CPJ4net.WCFUtil.Interfaces.IServiceInvoker">
+            <summary>
+            服务调用
+            </summary>
+        </member>
+        <member name="P:CPJIT.Library.CPJ4net.WCFUtil.Interfaces.IServiceInvoker.IpAddress">
+            <summary>
+            IP:Port形式的地址
+            </summary>
+        </member>
+        <member name="P:CPJIT.Library.CPJ4net.WCFUtil.Interfaces.IServiceInvoker.TransferProtocl">
+            <summary>
+            传输协议类型
+            </summary>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.WCFUtil.Interfaces.IServiceInvoker.InvokeService``1(System.Action{``0})">
+            <summary>
+            调用接口
+            </summary>
+            <typeparam name="TContract">接口协议</typeparam>
+            <param name="invokeHandler">调用委托</param>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.WCFUtil.Interfaces.IServiceInvoker.InvokeService``2(System.Func{``0,``1})">
+            <summary>
+            调用带返回值的接口
+            </summary>
+            <typeparam name="TContract">接口协议</typeparam>
+            <typeparam name="TResult">返回值</typeparam>
+            <param name="invokeHandler">调用委托</param>
+            <returns></returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.WCFUtil.Interfaces.IServiceInvoker.AsyncInvokeService``1(System.Action{``0},System.Action{System.Boolean})">
+            <summary>
+            异步调用接口
+            </summary>
+            <typeparam name="TContract">接口协议</typeparam>
+            <param name="invokeHandler">调用委托</param>
+            <param name="isSuccessHandler">返回委托，是否调用成功</param>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.WCFUtil.Interfaces.IServiceInvoker.AsyncInvokeService``2(System.Func{``0,``1},System.Action{``1})">
+            <summary>
+            异步调用带返回值的接口
+            </summary>
+            <typeparam name="TContract">接口协议</typeparam>
+            <typeparam name="TResult">返回值</typeparam>
+            <param name="invokeHandler">调用委托</param>
+            <param name="resultHandler">返回委托，处理响应的数据</param>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.WCFUtil.Services.ServiceInvoker.GetProxy``1(System.ServiceModel.Description.ServiceEndpoint)">
+            <summary>
+            获取接口代理对象
+            </summary>
+            <typeparam name="TContract">接口协议</typeparam>
+            <param name="ep">客户端与服务端通信的终结点</param>
+            <returns></returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.WCFUtil.Services.ServiceInvoker.GetServiceEndpoint``1">
+            <summary>
+            获取客户端与服务端的通信终结点
+            </summary>
+            <typeparam name="TContract">接口协议</typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.WCFUtil.Services.ServiceInvoker.InvokeService``1(System.Action{``0})">
+            <summary>
+            调用接口
+            </summary>
+            <typeparam name="TContract">接口协议</typeparam>
+            <param name="invokeHandler">调用委托</param>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.WCFUtil.Services.ServiceInvoker.InvokeService``2(System.Func{``0,``1})">
+            <summary>
+            调用带返回值的接口
+            </summary>
+            <typeparam name="TContract">接口协议</typeparam>
+            <typeparam name="TResult">返回值</typeparam>
+            <param name="invokeHandler">调用委托</param>
+            <returns></returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.WCFUtil.Services.ServiceInvoker.AsyncInvokeService``1(System.Action{``0},System.Action{System.Boolean})">
+            <summary>
+            异步调用接口
+            </summary>
+            <typeparam name="TContract">接口协议</typeparam>
+            <param name="invokeHandler">调用委托</param>
+            <param name="isSuccessHandler">返回委托，是否调用成功</param>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.WCFUtil.Services.ServiceInvoker.AsyncInvokeService``2(System.Func{``0,``1},System.Action{``1})">
+            <summary>
+            异步调用带返回值的接口
+            </summary>
+            <typeparam name="TContract">接口协议</typeparam>
+            <typeparam name="TResult">返回值</typeparam>
+            <param name="invokeHandler">调用委托</param>
+            <param name="resultHandler">返回委托，处理响应的数据</param>
+        </member>
+        <member name="F:CPJIT.Library.CPJ4net.WCFUtil.WcfInvoker.serviceInvoker">
+            <summary>
+            调用服务的接口对象
+            </summary>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.WCFUtil.WcfInvoker.#ctor(System.String,System.Int32,CPJIT.Library.CPJ4net.WCFUtil.Enums.TransferProtocol)">
+            <summary>
+            使用指定的参数实例化对象。
+            </summary>
+            <param name="ip"></param>
+            <param name="port"></param>
+            <param name="transferProtocl"></param>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.WCFUtil.WcfInvoker.Invoke``1(System.Action{``0})">
+            <summary>
+            调用接口
+            </summary>
+            <typeparam name="TContract">接口协议</typeparam>
+            <param name="invokeHandler">调用委托</param>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.WCFUtil.WcfInvoker.Invoke``2(System.Func{``0,``1})">
+            <summary>
+            调用带返回值的接口
+            </summary>
+            <typeparam name="TContract">接口协议</typeparam>
+            <typeparam name="TResult">返回值</typeparam>
+            <param name="invokeHandler">调用委托</param>
+            <returns></returns>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.WCFUtil.WcfInvoker.AsyncInvoke``1(System.Action{``0},System.Action{System.Boolean})">
+            <summary>
+            异步调用接口
+            </summary>
+            <typeparam name="TContract">接口协议</typeparam>
+            <param name="invokeHandler">调用委托</param>
+            <param name="isSuccessHandler">返回委托，是否调用成功</param>
+        </member>
+        <member name="M:CPJIT.Library.CPJ4net.WCFUtil.WcfInvoker.AsyncInvoke``2(System.Func{``0,``1},System.Action{``1})">
+            <summary>
+            异步调用带返回值的接口
+            </summary>
+            <typeparam name="TContract">接口协议</typeparam>
+            <typeparam name="TResult">返回值</typeparam>
+            <param name="invokeHandler">调用委托</param>
+            <param name="resultHandler">返回委托，处理响应的数据</param>
+        </member>
+    </members>
+</doc>

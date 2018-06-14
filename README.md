@@ -78,9 +78,60 @@ activemq.username=admin
 activemq.password=admin
 ```
 
-`第三步` 检查可执行程序目录下是否存在business文件夹。当然，如果该文件夹不存在，框架将自动创建。该文件夹的作用是存放用户开发的WCF服务业务dll文件。
+`第三步` 检查WcfConfig.xml文件。
+该文件决定了框架协议的切换和协议绑定的参数配置。
+```xml
+<?xml version="1.0"?>
+<WcfConfig>
+  <BindingType>WebHttpBinding</BindingType>  <!--该配置决定框架使用什么协议进行注册-->
 
-`第四步` 写一个简单的WCF协议接口。示例如下：
+  <BasicHttpBinding>
+    <AllowCookies>false</AllowCookies>
+    <CloseTimeout>30</CloseTimeout>
+    <OpenTimeout>30</OpenTimeout>
+    <SendTimeout>30</SendTimeout>
+    <ReceiveTimeout>30</ReceiveTimeout>
+    <BypassProxyOnLocal>false</BypassProxyOnLocal>
+    <MaxBufferPoolSize>2147483647</MaxBufferPoolSize>
+    <MaxReceivedMessageSize>2147483647</MaxReceivedMessageSize>
+    <TextEncoding>UTF-8</TextEncoding>
+    <UseDefaultWebProxy>true</UseDefaultWebProxy>
+  </BasicHttpBinding>
+
+  <WebHttpBinding>
+    <AllowCookies>false</AllowCookies>
+    <CloseTimeout>30</CloseTimeout>
+    <OpenTimeout>30</OpenTimeout>
+    <SendTimeout>30</SendTimeout>
+    <ReceiveTimeout>30</ReceiveTimeout>
+    <BypassProxyOnLocal>false</BypassProxyOnLocal>
+    <TransactionFlow>false</TransactionFlow>
+    <MaxBufferPoolSize>2147483647</MaxBufferPoolSize>
+    <MaxReceivedMessageSize>2147483647</MaxReceivedMessageSize>
+    <TextEncoding>UTF-8</TextEncoding>
+    <UseDefaultWebProxy>true</UseDefaultWebProxy>
+    <CrossDomainScriptAccessEnabled>true</CrossDomainScriptAccessEnabled>
+  </WebHttpBinding>
+
+  <NetTcpBinding>
+    <CloseTimeout>30</CloseTimeout>
+    <OpenTimeout>30</OpenTimeout>
+    <SendTimeout>30</SendTimeout>
+    <ReceiveTimeout>30</ReceiveTimeout>
+    <TransactionFlow>false</TransactionFlow>
+    <MaxBufferPoolSize>2147483647</MaxBufferPoolSize>
+    <MaxReceivedMessageSize>2147483647</MaxReceivedMessageSize>
+    <MaxBufferSize>2147483647</MaxBufferSize>
+    <ListenBacklog>200</ListenBacklog>
+    <MaxConnections>50</MaxConnections>
+  </NetTcpBinding>
+</WcfConfig>
+```
+*<font color='red'>需要值得注意的是，我们在WCF的Contract协议接口上添加了REST调用模式支持后，再切换到BasicHttpBinding后，不一定会成功（因为没时间去验证^.^），这一点各位屈尊使用这个框架的大大们可以尝试得出结论后邮件我。</font>*
+
+`第四步` 检查可执行程序目录下是否存在business文件夹。当然，如果该文件夹不存在，框架将自动创建。该文件夹的作用是存放用户开发的WCF服务业务dll文件。
+
+`第五步` 写一个简单的WCF协议接口。示例如下（示例为基于WebHttpBinding协议的REST调用）：
 
 ```csharp
 //定义WCF协议接口
@@ -275,6 +326,7 @@ public UserBusinessImpl : IUserBusiness
 ## 五. 更新日志
 
 2018.05.22_ 首次发布[v1.0.0.0]。
+2018.06.14_ 增加BasicHttpBingding（soap1.0）和NetTcpBingding（tcp）支持。[v1.0.1.0]。
 
 
 

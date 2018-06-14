@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml.Serialization;
 
 namespace Choper.Elk.Model
 {
     [Serializable]
-    public class WSHttpBindingConfig
+    public class WebHttpBindingConfig
     {
         public bool AllowCookies { get; set; }
 
@@ -33,8 +29,5 @@ namespace Choper.Elk.Model
         public bool UseDefaultWebProxy { get; set; }
 
         public bool CrossDomainScriptAccessEnabled { get; set; }
-
-        [XmlElement("ReaderQuotas")]
-        public ReaderQuotasConfig ReaderQuotasConfig { get; set; }
     }
 }

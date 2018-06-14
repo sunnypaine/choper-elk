@@ -54,17 +54,20 @@
     <Compile Include="Model\BasicHttpBindingConfig.cs" />
     <Compile Include="Model\BeanInfo.cs" />
     <Compile Include="Model\NetTcpBindingConfig.cs" />
-    <Compile Include="Model\ReaderQuotasConfig.cs" />
     <Compile Include="Model\ServiceInfo.cs" />
     <Compile Include="Model\WcfConfig.cs" />
-    <Compile Include="Model\WSHttpBindingConfig.cs" />
+    <Compile Include="Model\WebHttpBindingConfig.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="WcfConfig.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Choper.Elk.Buckhorn\Choper.Elk.Buckhorn.csproj">
       <Project>{d94dc1ea-b155-40a7-b296-716df56702e8}</Project>

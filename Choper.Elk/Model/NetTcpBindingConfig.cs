@@ -44,8 +44,5 @@ namespace Choper.Elk.Model
         public int ListenBacklog { get; set; }
 
         public int MaxConnections { get; set; }
-
-        [XmlElement("ReaderQuotas")]
-        public ReaderQuotasConfig ReaderQuotasConfig { get; set; }
     }
 }

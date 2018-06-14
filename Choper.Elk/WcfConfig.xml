@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<WcfConfig>
+  <BindingType>WebHttpBinding</BindingType>
+
+  <BasicHttpBinding>
+    <AllowCookies>false</AllowCookies>
+    <CloseTimeout>30</CloseTimeout>
+    <OpenTimeout>30</OpenTimeout>
+    <SendTimeout>30</SendTimeout>
+    <ReceiveTimeout>30</ReceiveTimeout>
+    <BypassProxyOnLocal>false</BypassProxyOnLocal>
+    <MaxBufferPoolSize>2147483647</MaxBufferPoolSize>
+    <MaxReceivedMessageSize>2147483647</MaxReceivedMessageSize>
+    <TextEncoding>UTF-8</TextEncoding>
+    <UseDefaultWebProxy>true</UseDefaultWebProxy>
+  </BasicHttpBinding>
+
+  <WebHttpBinding>
+    <AllowCookies>false</AllowCookies>
+    <CloseTimeout>30</CloseTimeout>
+    <OpenTimeout>30</OpenTimeout>
+    <SendTimeout>30</SendTimeout>
+    <ReceiveTimeout>30</ReceiveTimeout>
+    <BypassProxyOnLocal>false</BypassProxyOnLocal>
+    <TransactionFlow>false</TransactionFlow>
+    <MaxBufferPoolSize>2147483647</MaxBufferPoolSize>
+    <MaxReceivedMessageSize>2147483647</MaxReceivedMessageSize>
+    <TextEncoding>UTF-8</TextEncoding>
+    <UseDefaultWebProxy>true</UseDefaultWebProxy>
+    <CrossDomainScriptAccessEnabled>true</CrossDomainScriptAccessEnabled>
+  </WebHttpBinding>
+
+  <NetTcpBinding>
+    <CloseTimeout>30</CloseTimeout>
+    <OpenTimeout>30</OpenTimeout>
+    <SendTimeout>30</SendTimeout>
+    <ReceiveTimeout>30</ReceiveTimeout>
+    <TransactionFlow>false</TransactionFlow>
+    <MaxBufferPoolSize>2147483647</MaxBufferPoolSize>
+    <MaxReceivedMessageSize>2147483647</MaxReceivedMessageSize>
+    <MaxBufferSize>2147483647</MaxBufferSize>
+    <ListenBacklog>200</ListenBacklog>
+    <MaxConnections>50</MaxConnections>
+  </NetTcpBinding>
+</WcfConfig>

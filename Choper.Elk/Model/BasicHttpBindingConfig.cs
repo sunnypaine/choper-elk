@@ -31,8 +31,5 @@ namespace Choper.Elk.Model
         public string TextEncoding { get; set; }
 
         public bool UseDefaultWebProxy { get; set; }
-
-        [XmlElement("ReaderQuotas")]
-        public ReaderQuotasConfig ReaderQuotasConfig { get; set; }
     }
 }
